@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{5d013d71-18db-4351-817f-89309d724eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{450754c8-350e-4ba7-b506-4ff5af35a16e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{0ed62be7-67ce-46ea-907a-b70e19668a82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameRate">
+      <UniqueIdentifier>{fe2c3485-5d57-4e52-be07-e0b9a11cb2cb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Collision\Collision.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FrameRate\FrameRate.cpp">
+      <Filter>FrameRate</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Input\Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\SceneClear.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\SceneGameOver.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\ScenePlay.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Scene\SceneTitle.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Collision\Collision.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\FrameRate\FrameRate.h">
+      <Filter>FrameRate</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Input\Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\SceneClear.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\SceneGameOver.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\ScenePlay.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Scene\SceneTitle.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
