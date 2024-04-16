@@ -25,6 +25,9 @@
     <Filter Include="FrameRate">
       <UniqueIdentifier>{fe2c3485-5d57-4e52-be07-e0b9a11cb2cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{79e5f35c-6986-493a-b0d3-e41ba6829f92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Main.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="Src\Scene\SceneTitle.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Map\Map.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Collision\Collision.h">
@@ -76,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="Src\Scene\SceneTitle.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Map\Map.h">
+      <Filter>Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
