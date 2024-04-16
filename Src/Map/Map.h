@@ -28,4 +28,3 @@ public:
 	// •`‰æ
 	void Draw();
 };
-

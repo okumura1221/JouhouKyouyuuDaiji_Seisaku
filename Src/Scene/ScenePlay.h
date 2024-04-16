@@ -24,4 +24,12 @@ public:
 
 	// プレイシーン終了処理
 	void FinPlay();
+
+};
+
+struct MAPCollision
+{
+	// マップの当たり判定
+	void MapCollision();
+
 };
