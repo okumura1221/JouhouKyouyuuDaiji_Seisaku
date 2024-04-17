@@ -28,6 +28,9 @@
     <Filter Include="Map">
       <UniqueIdentifier>{79e5f35c-6986-493a-b0d3-e41ba6829f92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{54fd25da-8f3a-4e67-bcef-337d1a316c63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Main.cpp">
@@ -57,6 +60,9 @@
     <ClCompile Include="Src\Map\Map.cpp">
       <Filter>Map</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Player\player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Collision\Collision.h">
@@ -85,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Src\Map\Map.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Player\player.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
