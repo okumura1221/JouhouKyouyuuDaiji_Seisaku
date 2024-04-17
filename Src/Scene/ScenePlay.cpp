@@ -21,6 +21,10 @@ void ScenePlay::InitPlay()
 	// プレイ背景ハンドル
 	PlayBGHandle = LoadGraph(PLAY_BG_PATH);
 
+	CMap = new Map;
+
+	CMap->Init();
+
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
 }
 
@@ -43,6 +47,9 @@ void ScenePlay::DrawPlay()
 {
 	// タイトル背景描画
 	DrawGraph(0, 0, PlayBGHandle, true);
+
+	CMap->Draw();
+
 }
 
 //プレイシーン終了処理
