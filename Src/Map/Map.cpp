@@ -1,6 +1,6 @@
 #include "map.h"
 #include "DxLib.h"
-//#include "../Player/player.h"
+#include "../Player/player.h"
 
 //ƒ}ƒbƒvˆ—
 
@@ -41,7 +41,7 @@ Map::~Map() {}
 
 void Map::Init() {
 	// ‰æ‘œ‚Ì“Ç‚İ‚İ
-	LoadDivGraph("Data/Map/map.png", 4, 2, 2, 32, 32, mapHandle);
+	LoadDivGraph("Data/Image/Map/map.png", 4, 2, 2, 32, 32, mapHandle);
 }
 
 

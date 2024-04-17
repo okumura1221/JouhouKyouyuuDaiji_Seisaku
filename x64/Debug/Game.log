@@ -1,1 +1,8 @@
-﻿  Game.vcxproj -> C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\x64\Debug\Game.exe
+﻿  ScenePlay.cpp
+C:\Users\2309435\Desktop\clone\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.h(130,45): warning C4244: 'return': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Src/Scene/ScenePlay.cpp' をコンパイルしています)
+  
+C:\Users\2309435\Desktop\clone\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.h(133,45): warning C4244: 'return': 'int' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル 'Src/Scene/ScenePlay.cpp' をコンパイルしています)
+  
+  Game.vcxproj -> C:\Users\2309435\Desktop\clone\JouhouKyouyuuDaiji_Seisaku\x64\Debug\Game.exe
