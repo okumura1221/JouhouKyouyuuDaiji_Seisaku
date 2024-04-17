@@ -1,11 +1,11 @@
 #pragma once
 
 // 各マップのデータ数
-const int MAP_DATA_Y = 25;
-const int MAP_DATA_X = 40;
+const int MAP_DATA_Y = 12;
+const int MAP_DATA_X = 20;
 
 // マップサイズ
-const int MAP_SIZE = 32;
+const int MAP_SIZE = 64;
 
 // マップクラス
 class Map
