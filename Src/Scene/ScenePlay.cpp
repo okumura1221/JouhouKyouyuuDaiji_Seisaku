@@ -12,7 +12,8 @@ MAPCollision mapcollision;
 ScenePlay::ScenePlay()
 {
 	// プレイ背景ハンドル
-	PlayBGHandle = 0;
+	PlayBGHandle[0] = 0;
+	PlayBGHandle[1] = 0;
 }
 ScenePlay::~ScenePlay() { FinPlay(); }
 
@@ -20,7 +21,7 @@ ScenePlay::~ScenePlay() { FinPlay(); }
 void ScenePlay::InitPlay()
 {
 	// プレイ背景ハンドル
-	PlayBGHandle = LoadGraph(PLAY_BG_PATH);
+	for(int i=0;i< BACK_MAX_NUM;i++)PlayBGHandle[i] = LoadGraph(PLAY_BG_PATH);
 
 	CMap = new Map;
 
