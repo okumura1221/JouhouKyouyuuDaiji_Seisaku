@@ -6,7 +6,7 @@
 #include "Scene/SceneGameOver.h"	// ゲームオーバーのインクルード
 #include "Scene/ScenePlay.h"		//  シーンプレイのインクルード
 #include "Scene/SceneTitle.h"		// シーンタイトルのインクウード
-#include "Player/player.h"
+#include "Player/player.h"			//プレイヤーのインクルード
 
 // 現在のシーンID
 SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;
@@ -21,6 +21,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	if (DxLib_Init() == -1) {
 		return -1;
 	}
+
+	//マウスの表示状態を変更
+	SetMouseDispFlag(false);
 
 	// 画面サイズを変更
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
