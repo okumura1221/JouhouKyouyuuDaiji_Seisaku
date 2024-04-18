@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "player.h"
-#include "math.h"
+#include <math.h>
+#include <cmath>
 #include "../MyMath/MyMath.h"
 
 //スクリーンサイズ設定
@@ -28,7 +29,8 @@ Player::~Player()
 
 //初期化
 void Player::Init() {
-	//m_pos = { WINDOW_WIDTH / 2,WINDOW_HEIGHT / 2,0 };
+	m_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
+			  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)) };
 
 	//プレイヤー画像読み込み
 	playerHan = LoadGraph(PLAYER_PATH);
@@ -36,41 +38,55 @@ void Player::Init() {
 }
 
 void Player::Step() {
+
 	//マウスの位置を取得
 	GetMousePoint(&mouseX, &mouseY);
 	mouse_pos = VGet((float)mouseX, (float)mouseY, 0);
 
-	//動く向きと速さ
-	m_move_vec = GetVector(mouse_pos, m_pos, GetInverseProportion(GetDistance(mouse_pos, m_pos), PLAYER_SPEED));
+	// マウスポインタとキャラクターの距離を計算
+	int dx = mouse_pos.x - (m_pos.x + ((float)playerSize / 2));
+	int dy = mouse_pos.y - (m_pos.y + ((float)playerSize / 2));
+	float distance = sqrt(dx * dx + dy * dy);
 
-	//マウスポインタの位置からプレイヤーが逃げる
-	m_pos.x += m_move_vec.x;
-	m_pos.y += m_move_vec.y;
-	m_pos.z += m_move_vec.z;
+	// 一定距離内にマウスポインタがある場合、キャラクターが逃げる
+	if (distance < DISTANCE) {
+		float angle = atan2(dy, dx); // マウスポインタとキャラクターの角度
+		float t = (DISTANCE - distance) / 100; // 距離に応じた補間係数
+		float currentSpeed = lerp(BasePlayerSpeed, MaxPlayerSpeed, t);
+
+		speed = currentSpeed;
+
+		m_pos.x -= currentSpeed * cos(angle); // X方向の移動
+
+		m_pos.y -= currentSpeed * sin(angle); // Y方向の移動
+	}
+
 
 	//プレイヤーが範囲外に行かない処理
-	if (m_pos.x <= PLAYER_MOVE_SPACE_X)
-	{
-		m_pos.x = PLAYER_MOVE_SPACE_X;
-	}
-	if (m_pos.x >= WINDOW_WIDTH - PLAYER_MOVE_SPACE_X)
-	{
-		m_pos.x = WINDOW_WIDTH - PLAYER_MOVE_SPACE_X;
-	}
-	if (m_pos.y <= PLAYER_MOVE_SPACE_Y)
-	{
-		m_pos.y = PLAYER_MOVE_SPACE_Y;
-	}
-	if (m_pos.y >= WINDOW_HEIGHT - PLAYER_MOVE_SPACE_Y)
-	{
-		m_pos.y = WINDOW_HEIGHT - PLAYER_MOVE_SPACE_Y;
-	}
+	//if (m_pos.x <= PLAYER_MOVE_SPACE_X)
+	//{
+	//	m_pos.x = PLAYER_MOVE_SPACE_X;
+	//}
+	//if (m_pos.x >= WINDOW_WIDTH - PLAYER_MOVE_SPACE_X)
+	//{
+	//	m_pos.x = WINDOW_WIDTH - PLAYER_MOVE_SPACE_X;
+	//}
+	//if (m_pos.y <= PLAYER_MOVE_SPACE_Y)
+	//{
+	//	m_pos.y = PLAYER_MOVE_SPACE_Y;
+	//}
+	//if (m_pos.y >= WINDOW_HEIGHT - PLAYER_MOVE_SPACE_Y)
+	//{
+	//	m_pos.y = WINDOW_HEIGHT - PLAYER_MOVE_SPACE_Y;
+	//}
 }
 
 void Player::Draw() {
 	//プレイヤーを描画
+
 	DrawGraph(m_pos.x, m_pos.y, playerHan, true);
-	DrawGraph(mouse_pos.x, mouse_pos.y, mouseHan, true);
+	DrawRotaGraph(mouse_pos.x, mouse_pos.y, 1.0, 0.0, mouseHan, true);
+	//DrawGraph(mouse_pos.x, mouse_pos.y, mouseHan, true);
 
 	DrawFormatString(0, 0, GetColor(255, 0, 0), 
 		"プレイヤー座標:X:%f\nプレイヤー座標:Y:%f\nプレイヤー座標:Z:%f"
@@ -81,6 +97,9 @@ void Player::Draw() {
 	DrawFormatString(0, 110, GetColor(0, 0, 255),
 		"m_move_vec座標:X:%f\nm_move_vec座標:Y:%f\nm_move_vec座標:Z:%f"
 		, m_move_vec.x, m_move_vec.y, m_move_vec.z);
+
+	DrawFormatString(0, 165, GetColor(255, 0, 255),
+		"加速度:%f", speed);
 }
 
 void Player::Fin() {
@@ -93,4 +112,8 @@ void Player::Fin() {
 // 上下左右の順になっている
 void Player::GetMoveDirection(bool* _dirArray) {
 
+}
+
+float Player::lerp(float start, float end, float t) {
+	return start + t * (end - start);
 }
