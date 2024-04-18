@@ -1,2 +1,19 @@
-﻿  MyMath.cpp
+﻿  Main.cpp
+  Map.cpp
+C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\Src\Map\Map.cpp(35,17): warning C4477: 'fscanf_s' : 書式文字列 '%d' には、型 'int *' の引数が必要ですが、可変個引数 1 は型 'const int *' です
+  player.cpp
+C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.cpp(7,1): warning C4005: 'WINDOW_WIDTH': マクロが再定義されました。
+  C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\Src\Scene\Scene.h(5,1):
+  'WINDOW_WIDTH' の以前の定義を確認してください
+  
+C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.cpp(8,1): warning C4005: 'WINDOW_HEIGHT': マクロが再定義されました。
+  C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\Src\Scene\Scene.h(6,1):
+  'WINDOW_HEIGHT' の以前の定義を確認してください
+  
+C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.cpp(72,26): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.cpp(72,17): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.cpp(73,34): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.cpp(73,21): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  ScenePlay.cpp
+  コードを生成中...
   Game.vcxproj -> C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\x64\Debug\Game.exe

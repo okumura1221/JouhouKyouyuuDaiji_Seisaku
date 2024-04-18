@@ -15,6 +15,12 @@
 #define PLAYER_PATH "Data/Image/Player/player.png"
 #define MOUSE_PATH  "Data/Image/Player/mouse.png"
 
+Player::Player()
+{
+	m_move_vec = { 0 };
+	mouse_pos = { 0 };
+}
+
 Player::~Player()
 {
 	Fin();
@@ -22,9 +28,7 @@ Player::~Player()
 
 //初期化
 void Player::Init() {
-	m_move_vec = { 0 };
-	mouse_pos = { 0 };
-	m_pos = { WINDOW_WIDTH / 2,WINDOW_HEIGHT / 2,0 };
+	//m_pos = { WINDOW_WIDTH / 2,WINDOW_HEIGHT / 2,0 };
 
 	//プレイヤー画像読み込み
 	playerHan = LoadGraph(PLAYER_PATH);
@@ -32,12 +36,12 @@ void Player::Init() {
 }
 
 void Player::Step() {
+	//マウスの位置を取得
 	GetMousePoint(&mouseX, &mouseY);
+	mouse_pos = VGet((float)mouseX, (float)mouseY, 0);
 
 	//動く向きと速さ
 	m_move_vec = GetVector(mouse_pos, m_pos, GetInverseProportion(GetDistance(mouse_pos, m_pos), PLAYER_SPEED));
-
-	mouse_pos = VGet((float)mouseX, (float)mouseY, 0);
 
 	//マウスポインタの位置からプレイヤーが逃げる
 	m_pos.x += m_move_vec.x;
@@ -66,11 +70,12 @@ void Player::Step() {
 void Player::Draw() {
 	//プレイヤーを描画
 	DrawGraph(m_pos.x, m_pos.y, playerHan, true);
-	DrawGraph(mouseX, mouseY, mouseHan, true);
+	DrawGraph(mouse_pos.x, mouse_pos.y, mouseHan, true);
 }
 
 void Player::Fin() {
-
+	//プレイヤー画像の後処理
+	DeleteGraph(playerHan);
 }
 
 
