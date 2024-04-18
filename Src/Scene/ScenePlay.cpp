@@ -12,8 +12,8 @@ MAPCollision mapcollision;
 ScenePlay::ScenePlay()
 {
 	// プレイ背景ハンドル
-	PlayBGHandle[0] = 0;
-	PlayBGHandle[1] = 0;
+	for (int i = 0;i < BACK_MAX_NUM;i++)
+	PlayBGHandle[i] = 0;
 }
 
 ScenePlay::~ScenePlay() { FinPlay(); }
@@ -22,7 +22,13 @@ ScenePlay::~ScenePlay() { FinPlay(); }
 void ScenePlay::InitPlay()
 {
 	// プレイ背景ハンドル
-	for(int i=0;i< BACK_MAX_NUM;i++)PlayBGHandle[i] = LoadGraph(PLAY_BG_PATH);
+	for (int i = 0;i < BACK_MAX_NUM;i++)
+	{
+		PlayBGHandle[i] = LoadGraph(PLAY_BG_PATH);
+	}
+
+	backX[0] = 0;
+	backX[1] = 1280;
 
 	CMap = new Map;
 
@@ -43,13 +49,10 @@ void ScenePlay::StepPlay(){
 	}
 
 	//背景スクロール処理
-	backX--;
-	backX2--;
-	if (backX == -1280) {
-		backX = 1280;
-	}
-	if (backX2 == -1280) {
-		backX2 = 1280;
+	for (int i = 0;i < BACK_MAX_NUM;i++)
+	{
+		backX[i]--;
+		if (backX[i] == -1280)backX[i] = 1280;
 	}
 }
 
@@ -57,8 +60,8 @@ void ScenePlay::StepPlay(){
 void ScenePlay::DrawPlay()
 {
 	// タイトル背景描画
-	DrawGraph(backX, backY, PlayBGHandle, true);
-	DrawGraph(backX2, backY, PlayBGHandle, true);
+	for (int i = 0;i < BACK_MAX_NUM;i++)
+		DrawGraph(backX[i], backY, PlayBGHandle[i], true);
 
 	CMap->Draw();
 }
@@ -67,7 +70,8 @@ void ScenePlay::DrawPlay()
 void ScenePlay::FinPlay()
 {
 	// タイトル背景ハンドル
-	DeleteGraph(PlayBGHandle);
+	for (int i = 0;i < BACK_MAX_NUM;i++)
+		DeleteGraph(PlayBGHandle[i]);
 
 	// クリアシーンに移動
 	g_CurrentSceneID = SCENE_ID_INIT_CLEAR;

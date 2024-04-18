@@ -75,9 +75,12 @@ void Player::Draw() {
 	DrawFormatString(0, 0, GetColor(255, 0, 0), 
 		"プレイヤー座標:X:%f\nプレイヤー座標:Y:%f\nプレイヤー座標:Z:%f"
 		, m_pos.x, m_pos.y, m_pos.z);
-	DrawFormatString(0, 55, GetColor(255, 0, 0),
+	DrawFormatString(0, 55, GetColor(0, 255, 0),
 		"マウス座標:X:%f\nマウス座標:Y:%f\nマウス座標:Z:%f"
 		, mouse_pos.x, mouse_pos.y, mouse_pos.z);
+	DrawFormatString(0, 110, GetColor(0, 0, 255),
+		"m_move_vec座標:X:%f\nm_move_vec座標:Y:%f\nm_move_vec座標:Z:%f"
+		, m_move_vec.x, m_move_vec.y, m_move_vec.z);
 }
 
 void Player::Fin() {

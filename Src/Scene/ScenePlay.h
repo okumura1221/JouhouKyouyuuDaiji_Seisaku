@@ -7,16 +7,9 @@
 class ScenePlay {
 private:
 	// プレイ背景ハンドル
-<<<<<<< HEAD
 	int PlayBGHandle[BACK_MAX_NUM];
-	int backX[BACK_MAX_NUM] = { 0,-1280 };
-	int	backY = -1;
-=======
-	int PlayBGHandle;
-	int backX = 0;
-	int backX2 = 1280;
-	int backY = 0;
->>>>>>> a53e01db79afa4726d10b5e7d9caedef1d723562
+	int backX[BACK_MAX_NUM] = { 0 };
+	int	backY = 0;
 
 public:
 	ScenePlay();
