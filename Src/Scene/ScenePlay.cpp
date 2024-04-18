@@ -14,6 +14,7 @@ ScenePlay::ScenePlay()
 	// プレイ背景ハンドル
 	PlayBGHandle = 0;
 }
+
 ScenePlay::~ScenePlay() { FinPlay(); }
 
 //プレイシーンの初期化
@@ -40,6 +41,7 @@ void ScenePlay::StepPlay(){
 		FinPlay();
 	}
 
+	//背景スクロール処理
 	backX--;
 	backX2--;
 	if (backX == -1280) {
@@ -58,7 +60,6 @@ void ScenePlay::DrawPlay()
 	DrawGraph(backX2, backY, PlayBGHandle, true);
 
 	CMap->Draw();
-
 }
 
 //プレイシーン終了処理
