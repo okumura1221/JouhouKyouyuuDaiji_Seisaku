@@ -144,6 +144,7 @@
     <ClCompile Include="Src\Input\Input.cpp" />
     <ClCompile Include="Src\Main.cpp" />
     <ClCompile Include="Src\Map\Map.cpp" />
+    <ClCompile Include="Src\MyMath\MyMath.cpp" />
     <ClCompile Include="Src\Player\player.cpp" />
     <ClCompile Include="Src\Scene\SceneClear.cpp" />
     <ClCompile Include="Src\Scene\SceneGameOver.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Src\FrameRate\FrameRate.h" />
     <ClInclude Include="Src\Input\Input.h" />
     <ClInclude Include="Src\Map\Map.h" />
+    <ClInclude Include="Src\MyMath\MyMath.h" />
     <ClInclude Include="Src\Player\player.h" />
     <ClInclude Include="Src\Scene\Scene.h" />
     <ClInclude Include="Src\Scene\SceneClear.h" />

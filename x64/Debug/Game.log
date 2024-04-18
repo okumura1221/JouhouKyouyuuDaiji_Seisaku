@@ -1,6 +1,2 @@
-﻿  Map.cpp
-c:\DxLib_VC\プロジェクトに追加すべきファイル_VC用\DxLib.h(3344,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
-C:\Users\まほ まや まい\Desktop\clone\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.h(130,45): warning C4244: 'return': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\まほ まや まい\Desktop\clone\JouhouKyouyuuDaiji_Seisaku\Src\Player\player.h(133,45): warning C4244: 'return': 'int' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\まほ まや まい\Desktop\clone\JouhouKyouyuuDaiji_Seisaku\Src\Map\Map.cpp(35,17): warning C4477: 'fscanf_s' : 書式文字列 '%d' には、型 'int *' の引数が必要ですが、可変個引数 1 は型 'const int *' です
-  Game.vcxproj -> C:\Users\まほ まや まい\Desktop\clone\JouhouKyouyuuDaiji_Seisaku\x64\Debug\Game.exe
+﻿  MyMath.cpp
+  Game.vcxproj -> C:\Users\2309432\Desktop\JouhouKyouyuuDaiji_Seisaku\x64\Debug\Game.exe

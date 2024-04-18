@@ -6,6 +6,7 @@
 #include "Scene/SceneGameOver.h"	// ゲームオーバーのインクルード
 #include "Scene/ScenePlay.h"		//  シーンプレイのインクルード
 #include "Scene/SceneTitle.h"		// シーンタイトルのインクウード
+#include "Player/player.h"
 
 // 現在のシーンID
 SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;
@@ -35,6 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	ScenePlay     Play;
 	SceneClear    Clear;
 	SceneGameOver GameOver;
+	Player        Player;
 
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
@@ -90,6 +92,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		{
 			//プレイシーンの初期化
 			Play.InitPlay();
+			Player.Init();
 
 		}//SCENE_ID_INIT_PLAY
 
@@ -99,9 +102,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		{
 			//プレイシーン通常処理
 			Play.StepPlay();
+			Player.Step();
 
 			//プレイシーン描画処理
 			Play.DrawPlay();
+			Player.Draw();
 
 		}//SCENE_ID_LOOP_PLAY終わりの括弧
 		break;
