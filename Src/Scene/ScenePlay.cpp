@@ -4,6 +4,7 @@
 #include"../Map/Map.h"
 #include "../Collision/Collision.h"
 #include"../Player/player.h"
+
 Player* player;
 Map* CMap;
 MAPCollision mapcollision;
@@ -29,9 +30,7 @@ void ScenePlay::InitPlay()
 }
 
 //プレイシーン通常処理
-void ScenePlay::StepPlay()
-{
-
+void ScenePlay::StepPlay(){
 	//マップとの当たり判定
 	mapcollision.MapCollision();
 	// Enterを押したら
@@ -40,13 +39,23 @@ void ScenePlay::StepPlay()
 		// プレイシーンを終了する
 		FinPlay();
 	}
+
+	/*backX--;
+	backX2--;
+	if (backX == -1280) {
+		backX = 1280;
+	}
+	if (backX2 == -1280) {
+		backX2 = 1280;
+	}*/
 }
 
 //プレイシーン描画処理
 void ScenePlay::DrawPlay()
 {
 	// タイトル背景描画
-	DrawGraph(0, 0, PlayBGHandle, true);
+	DrawGraph(backX, backY, PlayBGHandle, true);
+	DrawGraph(backX2, backY, PlayBGHandle, true);
 
 	CMap->Draw();
 

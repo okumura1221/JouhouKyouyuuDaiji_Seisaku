@@ -2,12 +2,13 @@
 
 // 画像パス
 // プレイ背景
-#define PLAY_BG_PATH "Data/Image/BackGround/TentativePlayBG.png"
+#define PLAY_BG_PATH "Data/Image/BackGround/back.png"
 
 class ScenePlay {
 private:
 	// プレイ背景ハンドル
 	int PlayBGHandle;
+	int backX = 0, backX2 = 1280, backY;
 
 public:
 	ScenePlay();
