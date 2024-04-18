@@ -40,14 +40,14 @@ void ScenePlay::StepPlay(){
 		FinPlay();
 	}
 
-	/*backX--;
+	backX--;
 	backX2--;
 	if (backX == -1280) {
 		backX = 1280;
 	}
 	if (backX2 == -1280) {
 		backX2 = 1280;
-	}*/
+	}
 }
 
 //プレイシーン描画処理

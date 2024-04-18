@@ -8,7 +8,9 @@ class ScenePlay {
 private:
 	// プレイ背景ハンドル
 	int PlayBGHandle;
-	int backX = 0, backX2 = 1280, backY;
+	int backX = 0;
+	int backX2 = 1280;
+	int backY = 0;
 
 public:
 	ScenePlay();
