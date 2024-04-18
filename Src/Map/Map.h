@@ -7,13 +7,16 @@ const int MAP_DATA_X = 20;
 // マップサイズ
 const int MAP_SIZE = 64;
 
+//マップデータバリエーション
+
+
 // マップクラス
 class Map
 {
 private:
 	// マップチップハンドル
 	int mapHandle[4];
-
+	int mapSelect[4];
 public:
 	Map();
 	~Map();

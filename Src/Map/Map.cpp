@@ -22,7 +22,7 @@ void Map::Init() {
 
 	// マップデータを読み込む
 	FILE* fp;
-	fopen_s(&fp, "Data/map.csv", "r"); // ファイルを開く
+	fopen_s(&fp, "Data/MapData/Map_1/map.csv", "r"); // ファイルを開く
 	if (fp == NULL) // ファイルが開けなかったら
 	{
 		DrawString(0, 0, "dgsgh", GetColor(255, 255, 255));
