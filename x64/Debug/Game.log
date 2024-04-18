@@ -1,5 +1,0 @@
-﻿  Map.cpp
-C:\Users\2309435\Desktop\clone\JouhouKyouyuuDaiji_Seisaku\Src\Map\Map.cpp(35,17): warning C4477: 'fscanf_s' : 書式文字列 '%d' には、型 'int *' の引数が必要ですが、可変個引数 1 は型 'const int *' です
-  ScenePlay.cpp
-  コードを生成中...
-  Game.vcxproj -> C:\Users\2309435\Desktop\clone\JouhouKyouyuuDaiji_Seisaku\x64\Debug\Game.exe
