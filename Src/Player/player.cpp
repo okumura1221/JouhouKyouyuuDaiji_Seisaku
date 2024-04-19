@@ -48,18 +48,22 @@ void Player::Init() {
 void Player::Step() {
 
 	GetMousePoint(&mouseX, &mouseY);
-	//マウス画像をクリックする
-	if (mouse_pos.x <= mouseX && mouseX <= (mouse_pos.x+ playerSize) &&
-		mouse_pos.y <= mouseY && mouseY <= (mouse_pos.y+playerSize))
+	
+	if ((mouse_pos.x - (playerSize / 2)) <= mouseX &&
+		mouseX <= (mouse_pos.x + (playerSize / 2)) &&
+		(mouse_pos.y - (playerSize / 2)) <= mouseY &&
+		mouseY <= (mouse_pos.y + (playerSize / 2)))
 	{
-		DrawFormatString(0, 220, GetColor(0, 255, 255),"当たる");
-		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) 
+		mauseOnPicture = true;
+		//マウス画像をクリックする
+		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 		{
 			//マウスの表示状態を変更
 			SetMouseDispFlag(false);
-			mauseGetFlag = true;	
+			mauseGetFlag = true;
 		}
 	}
+	else mauseOnPicture = false;
 	if(mauseGetFlag)mouse_pos = VGet((float)mouseX, (float)mouseY, 0);
 		
 	//マウスの位置を取得
@@ -112,8 +116,10 @@ void Player::Draw() {
 	//プレイヤーを描画
 
 	DrawGraph(m_pos.x, m_pos.y, playerHan, true);
+	if(mauseOnPicture&& !mauseGetFlag)
+		SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
 	DrawRotaGraph(mouse_pos.x, mouse_pos.y, 1.0, 0.0, mouseHan, true);
-
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	DrawFormatString(0, 0, GetColor(255, 0, 0), 
 		"プレイヤー座標:X:%f\nプレイヤー座標:Y:%f\nプレイヤー座標:Z:%f"
 		, m_pos.x, m_pos.y, m_pos.z);
