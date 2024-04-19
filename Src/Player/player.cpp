@@ -14,6 +14,8 @@
 
 //画像パス
 #define PLAYER_PATH "Data/Image/Player/player.png"
+#define PLAYER_PATH "Data/Image/Player/player.png"
+
 #define MOUSE_PATH  "Data/Image/Player/mouse.png"
 
 //プレイヤーが出していい最高スピード
@@ -34,19 +36,34 @@ Player::~Player()
 void Player::Init() {
 	m_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
 			  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)) };
-
 	//プレイヤー画像読み込み
 	playerHan = LoadGraph(PLAYER_PATH);
 	mouseHan = LoadGraph(MOUSE_PATH);
-
+	mouse_pos = VGet((WINDOW_WIDTH / 2)+(WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 2), 0);
 	speed = 0;
+	mauseGetFlag = false;
+	mauseOnPicture = false;
 }
 
 void Player::Step() {
 
-	//マウスの位置を取得
 	GetMousePoint(&mouseX, &mouseY);
-	mouse_pos = VGet((float)mouseX, (float)mouseY, 0);
+	//マウス画像をクリックする
+	if (mouse_pos.x <= mouseX && mouseX <= (mouse_pos.x+ playerSize) &&
+		mouse_pos.y <= mouseY && mouseY <= (mouse_pos.y+playerSize))
+	{
+		DrawFormatString(0, 220, GetColor(0, 255, 255),"当たる");
+		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) 
+		{
+			//マウスの表示状態を変更
+			SetMouseDispFlag(false);
+			mauseGetFlag = true;	
+		}
+	}
+	if(mauseGetFlag)mouse_pos = VGet((float)mouseX, (float)mouseY, 0);
+		
+	//マウスの位置を取得
+	
 
 	// マウスポインタとキャラクターの距離を計算
 	int dx = mouse_pos.x - (m_pos.x + ((float)playerSize / 2));
@@ -68,6 +85,7 @@ void Player::Step() {
 
 	//スピードを出しすぎたらゲームオーバー
 	if (speed >= PLAYER_SPEED_MAX) {
+		SetMouseDispFlag(true);
 		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	}
 

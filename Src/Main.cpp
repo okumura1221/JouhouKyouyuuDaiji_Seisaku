@@ -22,8 +22,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return -1;
 	}
 
-	//マウスの表示状態を変更
-	SetMouseDispFlag(false);
+	
 
 	// 画面サイズを変更
 	SetGraphMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32);

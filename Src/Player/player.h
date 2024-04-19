@@ -12,7 +12,7 @@ class Player {
 protected:
 	//プレイヤー変数
 	int playerHan   = 0;					//プレイヤー画像
-	int playerSize = 64;					//プレイヤー画像サイズ
+	const int playerSize = 64;					//プレイヤー画像サイズ
 
 	float playerX = 0.0f, playerY = 0.0f;	//座標
 
@@ -29,6 +29,8 @@ protected:
 	//マウス用変数
 	int mouseHan = 0;						//マウス画像
 	int mouseX   = 0, mouseY = 0;			//マウス座標
+	bool mauseOnPicture = false;			//マウスポイントとマウス画像が重なっているか
+	bool mauseGetFlag = false;				//マウスポイントとマウス画像が同期しているか
 	VECTOR m_pos;
 
 	float speed;
