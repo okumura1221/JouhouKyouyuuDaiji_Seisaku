@@ -27,6 +27,8 @@ void ScenePlay::InitPlay()
 		PlayBGHandle[i] = LoadGraph(PLAY_BG_PATH);
 	}
 
+	TextHan = LoadGraph(TEXT_PATH);
+
 	backX[0] = 0;
 	backX[1] = 1280;
 
@@ -60,10 +62,13 @@ void ScenePlay::StepPlay(){
 void ScenePlay::DrawPlay()
 {
 	// タイトル背景描画
-	for (int i = 0;i < BACK_MAX_NUM;i++)
+	for (int i = 0; i < BACK_MAX_NUM; i++) {
 		DrawGraph(backX[i], backY, PlayBGHandle[i], true);
+	}
 
 	CMap->Draw();
+
+	DrawGraph(10, 50, TextHan, true);
 }
 
 //プレイシーン終了処理

@@ -2,14 +2,19 @@
 
 // 画像パス
 // プレイ背景
-#define PLAY_BG_PATH "Data/Image/BackGround/back.png"
+#define PLAY_BG_PATH "Data/Image/Play/back.png"
 #define BACK_MAX_NUM 2
+
+#define TEXT_PATH	 "Data/Image/Play/text.png"
 class ScenePlay {
 private:
 	// プレイ背景ハンドル
 	int PlayBGHandle[BACK_MAX_NUM];
 	int backX[BACK_MAX_NUM] = { 0 };
 	int	backY = 0;
+
+	//テキストハンドル
+	int TextHan = 0;
 
 public:
 	ScenePlay();

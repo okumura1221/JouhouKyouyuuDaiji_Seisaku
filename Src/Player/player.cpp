@@ -16,6 +16,9 @@
 #define PLAYER_PATH "Data/Image/Player/player.png"
 #define MOUSE_PATH  "Data/Image/Player/mouse.png"
 
+//プレイヤーが出していい最高スピード
+#define PLAYER_SPEED_MAX 5
+
 Player::Player()
 {
 	m_move_vec = { 0 };
@@ -63,8 +66,12 @@ void Player::Step() {
 		m_pos.y -= currentSpeed * sin(angle); // Y方向の移動
 	}
 
+	//スピードを出しすぎたらゲームオーバー
+	if (speed >= PLAYER_SPEED_MAX) {
+		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
+	}
 
-	//プレイヤーが範囲外に行かない処理
+	////プレイヤーが範囲外に行かない処理
 	//if (m_pos.x <= PLAYER_MOVE_SPACE_X)
 	//{
 	//	m_pos.x = PLAYER_MOVE_SPACE_X;
@@ -88,7 +95,6 @@ void Player::Draw() {
 
 	DrawGraph(m_pos.x, m_pos.y, playerHan, true);
 	DrawRotaGraph(mouse_pos.x, mouse_pos.y, 1.0, 0.0, mouseHan, true);
-	//DrawGraph(mouse_pos.x, mouse_pos.y, mouseHan, true);
 
 	DrawFormatString(0, 0, GetColor(255, 0, 0), 
 		"プレイヤー座標:X:%f\nプレイヤー座標:Y:%f\nプレイヤー座標:Z:%f"
