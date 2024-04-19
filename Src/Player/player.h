@@ -2,6 +2,8 @@
 
 constexpr int PLAYER_SPEED = 1;
 constexpr float DISTANCE = 200;
+
+
 enum Animation {
 	R,//右
 	L //左
@@ -11,9 +13,9 @@ class Player {
 
 protected:
 	//プレイヤー変数
-	int playerHan   = 0;					//プレイヤー画像
+	int playerHan[11] = { 0 };				//プレイヤー画像
+	const int Player_Animation = 11;			//プレイヤーのアニメーション数
 	const int playerSize = 64;					//プレイヤー画像サイズ
-
 	float playerX = 0.0f, playerY = 0.0f;	//座標
 
 	float BasePlayerSpeed = 0.5f;				//プレイヤー基本移動速度

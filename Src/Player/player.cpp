@@ -13,8 +13,8 @@
 #define PLAYER_MOVE_SPACE_Y			(620)						
 
 //画像パス
-#define PLAYER_PATH "Data/Image/Player/player.png"
-#define PLAYER_PATH "Data/Image/Player/player.png"
+//#define PLAYER_PATH "Data/Image/Player/player.png"
+#define PLAYER_PATH "Data/Image/Player/player_div.png"
 
 #define MOUSE_PATH  "Data/Image/Player/mouse.png"
 
@@ -37,12 +37,14 @@ void Player::Init() {
 	m_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
 			  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)) };
 	//プレイヤー画像読み込み
-	playerHan = LoadGraph(PLAYER_PATH);
+	//playerHan = LoadGraph(PLAYER_PATH);
+	LoadDivGraph("Data/Image/Player/player_div.png", 12, 4, 3, 64, 64, playerHan);
 	mouseHan = LoadGraph(MOUSE_PATH);
 	mouse_pos = VGet((WINDOW_WIDTH / 2)+(WINDOW_WIDTH / 4), (WINDOW_HEIGHT / 2), 0);
 	speed = 0;
 	mauseGetFlag = false;
 	mauseOnPicture = false;
+	animIndex = 1;
 }
 
 void Player::Step() {
@@ -82,11 +84,11 @@ void Player::Step() {
 
 		speed = currentSpeed;
 
-		m_pos.x -= currentSpeed * cos(angle); // X方向の移動
+		m_pos.x -= speed * cos(angle); // X方向の移動
 
-		m_pos.y -= currentSpeed * sin(angle); // Y方向の移動
+		m_pos.y -= speed * sin(angle); // Y方向の移動
 	}
-
+	else speed = 0;
 	//スピードを出しすぎたらゲームオーバー
 	if (speed >= PLAYER_SPEED_MAX) {
 		SetMouseDispFlag(true);
@@ -114,8 +116,38 @@ void Player::Step() {
 
 void Player::Draw() {
 	//プレイヤーを描画
+	if (speed == 0.0)
+	{
+		changeAnimFlame = 10;
+		animFlameCount++;
+		if (animFlameCount >= changeAnimFlame) {
+			animFlameCount = 0;
+			animIndex++;
+			if (animIndex >= 4) {
+				animIndex = 0;
+			}
+			else if (animIndex <= 0) {
+				animIndex = 3;
+			}
+		}
+	}
+	if (speed != 0.0)
+	{
+		changeAnimFlame = 6;
+		animFlameCount++;
+		if (animFlameCount >= changeAnimFlame) {
+			animFlameCount = 0;
+			animIndex++;
+			if (animIndex >= 8) {
+				animIndex = 4;
+			}
+			else if (animIndex <= 4) {
+				animIndex = 7;
+			}
+		}
+	}
+		DrawGraph(m_pos.x, m_pos.y, playerHan[animIndex], true);
 
-	DrawGraph(m_pos.x, m_pos.y, playerHan, true);
 	if(mauseOnPicture&& !mauseGetFlag)
 		SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
 	DrawRotaGraph(mouse_pos.x, mouse_pos.y, 1.0, 0.0, mouseHan, true);
@@ -132,7 +164,7 @@ void Player::Draw() {
 
 void Player::Fin() {
 	//プレイヤー画像の後処理
-	DeleteGraph(playerHan);
+
 }
 
 
