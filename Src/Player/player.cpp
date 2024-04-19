@@ -17,7 +17,7 @@
 #define MOUSE_PATH  "Data/Image/Player/mouse.png"
 
 //プレイヤーが出していい最高スピード
-#define PLAYER_SPEED_MAX 5
+#define PLAYER_SPEED_MAX 6
 
 Player::Player()
 {
