@@ -50,7 +50,20 @@ void Map::Draw() {
 			if (m_MapData[y][x] != 0) {
 				DrawGraph(x * MAP_SIZE, y * MAP_SIZE, mapHandle[m_MapData[y][x] - 1], true);
 			}
+			if (m_MapData[y][x] == 7|| m_MapData[y][x] == 8) {
+				if(Invert_Color_flag[y][x])
+				SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
+				DrawGraph(x * MAP_SIZE, y * MAP_SIZE, mapHandle[m_MapData[y][x] - 1], true);
+				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+			}
 		}
 	}
+}
+
+void Map::Set_Invert_Color(int y,int x) {
+	if (!Invert_Color_flag[y][x])
+		Invert_Color_flag[y][x] = true;
+	else
+		Invert_Color_flag[y][x] = false;
 }
 

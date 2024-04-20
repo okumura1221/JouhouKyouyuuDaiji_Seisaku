@@ -17,6 +17,7 @@ private:
 	// マップチップハンドル
 	int mapHandle[4];
 	int mapSelect[4];
+	bool Invert_Color_flag[MAP_DATA_Y][MAP_DATA_X] = { false };
 public:
 	Map();
 	~Map();
@@ -30,5 +31,7 @@ public:
 
 	// 描画
 	void Draw();
+
+	void Set_Invert_Color(int y, int x);
 };
 

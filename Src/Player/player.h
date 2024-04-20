@@ -26,6 +26,8 @@ protected:
 	int animIndex = 0;						//アニメーションの添え字
 	int changeAnimFlame = 0;				//アニメーション切り替え時間
 	int animFlameCount  = 0;				//切り替え時間カウント
+	bool playerOnSwitch = false;			//プレイヤーとスイッチが重なっているか
+	bool playerGoalFlag = false;			//プレイヤーがゴールにいるか
 
 	//マウス用変数
 	int mouseHan = 0;						//マウス画像
@@ -89,5 +91,13 @@ public:
 	//線形補完関数
 	float lerp(float start, float end, float t);
 
+	void SetplayerOnSwitchTrue();
 
+	void SetplayerOnSwitchFalse();
+
+	bool GetplayerOnSwitch() { return playerOnSwitch; };
+
+	void SetplayerGoalFlag();
+
+	void SetplayerGoal(float x, float y);
 };

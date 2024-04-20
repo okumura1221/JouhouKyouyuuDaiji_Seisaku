@@ -124,7 +124,8 @@ void ScenePlay::MAPCollision::MapCollision() {
 
 
 				// ブロック以外の場所には進めない
-				if (CMap->m_MapData[mapIndexY][mapIndexX] == 0)
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 0||
+					CMap->m_MapData[mapIndexY][mapIndexX] == 6)
 				{
 					// 上方向の修正
 					if (dirArray[0]) {
@@ -138,12 +139,28 @@ void ScenePlay::MAPCollision::MapCollision() {
 						// めり込み量を計算する
 						int overlap = Ay + Ah - By;
 						player->SetPlayerNextPosY(Ay - overlap);
-
 					}
 				}
 				//水に触れると画面遷移
 				if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
 					g_CurrentSceneID = SCENE_ID_INIT_CLEAR;
+
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 5)
+				{
+					player->SetplayerGoalFlag();
+				}
+				//スイッチを押すと色が反転
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 8)
+				{
+					player->SetplayerOnSwitchTrue();
+					if (player->GetplayerOnSwitch())
+					{
+						CMap->Set_Invert_Color(mapIndexY, mapIndexX);
+					}
+					else player->SetplayerOnSwitchFalse();
+				}
+				//else player->SetplayerOnSwitchFalse();
+				
 			}
 
 		}
@@ -180,7 +197,8 @@ void ScenePlay::MAPCollision::MapCollision() {
 			// 当たっているかチェック
 			if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh)) {
 				// ブロック以外の場所には進めない
-				if (CMap->m_MapData[mapIndexY][mapIndexX] == 0)
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 0|| 
+					CMap->m_MapData[mapIndexY][mapIndexX] == 6)
 				{
 					// 左方向の修正
 					if (dirArray[2]) {
@@ -188,6 +206,7 @@ void ScenePlay::MAPCollision::MapCollision() {
 						int overlap = Bx + Bw - Ax;
 						player->SetPlayerNextPosX(Ax + overlap);
 					}
+
 
 					// 右方向の修正
 					if (dirArray[3]) {
@@ -199,6 +218,24 @@ void ScenePlay::MAPCollision::MapCollision() {
 				//水に触れると画面遷移
 				if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
 					g_CurrentSceneID = SCENE_ID_INIT_CLEAR;
+
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 5)
+				{
+					player->SetplayerGoalFlag();
+					player->SetplayerGoal(Bx, By);
+				}
+				//スイッチを押すと色が反転
+				if (CMap->m_MapData[4][10] == 8)
+				{
+					player->SetplayerOnSwitchTrue();
+					if (player->GetplayerOnSwitch())
+					{
+						CMap->Set_Invert_Color(mapIndexY, mapIndexX);
+					}
+					else player->SetplayerOnSwitchFalse();
+				}
+				//else player->SetplayerOnSwitchFalse();
+				
 			}
 
 		}

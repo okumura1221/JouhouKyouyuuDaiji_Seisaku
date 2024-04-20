@@ -82,21 +82,23 @@ void Player::Step() {
 
 
 	// 一定距離内にマウスポインタがある場合、キャラクターが逃げる
-	if (distance < DISTANCE) {
-		float angle = atan2(dy, dx); // マウスポインタとキャラクターの角度
-		float t = (DISTANCE - distance) / 100; // 距離に応じた補間係数
-		float currentSpeed = lerp(BasePlayerSpeed, MaxPlayerSpeed, t);
+	if (!playerGoalFlag) {
+		if (distance < DISTANCE) {
+			float angle = atan2(dy, dx); // マウスポインタとキャラクターの角度
+			float t = (DISTANCE - distance) / 100; // 距離に応じた補間係数
+			float currentSpeed = lerp(BasePlayerSpeed, MaxPlayerSpeed, t);
 
-		speed = currentSpeed;
+			speed = currentSpeed;
 
-		m_next_pos.x -= speed * cos(angle); // X方向の移動
+			m_next_pos.x -= speed * cos(angle); // X方向の移動
 
-		m_next_pos.y -= speed * sin(angle); // Y方向の移動
-	}
-	else speed = 0;
-	//スピードを出しすぎたらゲームオーバー
-	if (speed >= PLAYER_SPEED_MAX) {
-		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
+			m_next_pos.y -= speed * sin(angle); // Y方向の移動
+		}
+		else speed = 0;
+		//スピードを出しすぎたらゲームオーバー
+		if (speed >= PLAYER_SPEED_MAX) {
+			g_CurrentSceneID = SCENE_ID_FIN_PLAY;
+		}
 	}
 }
 
@@ -106,7 +108,7 @@ void Player::Fin()
 
 void Player::Draw() {
 	//プレイヤーを描画
-	if (speed == 0.0)
+	if (speed == 0.0 && !playerGoalFlag)
 	{
 		changeAnimFlame = 10;
 		animFlameCount++;
@@ -121,7 +123,7 @@ void Player::Draw() {
 			}
 		}
 	}
-	if (speed != 0.0)
+	else if (speed != 0.0&&!playerGoalFlag)
 	{
 		changeAnimFlame = 6;
 		animFlameCount++;
@@ -133,6 +135,21 @@ void Player::Draw() {
 			}
 			else if (animIndex <= 4) {
 				animIndex = 7;
+			}
+		}
+	}
+	else
+	{
+		changeAnimFlame = 10;
+		animFlameCount++;
+		if (animFlameCount >= changeAnimFlame) {
+			animFlameCount = 0;
+			animIndex++;
+			if (animIndex >= 10) {
+				animIndex = 8;
+			}
+			else if (animIndex <= 8) {
+				animIndex = 9;
 			}
 		}
 	}
@@ -180,4 +197,25 @@ void Player::GetMoveDirection(bool* _dirArray) {
 
 float Player::lerp(float start, float end, float t) {
 	return start + t * (end - start);
+}
+
+void Player::SetplayerOnSwitchTrue()
+{
+	playerOnSwitch = true;
+}
+
+void Player::SetplayerOnSwitchFalse()
+{
+	playerOnSwitch = false;
+}
+
+void Player::SetplayerGoalFlag()
+{
+	playerGoalFlag = true;
+}
+
+void Player::SetplayerGoal(float x, float y)
+{
+	m_pos.x = x;
+	m_pos.y = y;
 }
