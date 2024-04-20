@@ -94,7 +94,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		{
 			//プレイシーンの初期化
 			Play.InitPlay();
-			Player.Init();
+			
 
 		}//SCENE_ID_INIT_PLAY
 
@@ -104,11 +104,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		{
 			//プレイシーン通常処理
 			Play.StepPlay();
-			Player.Step();
+			
 
 			//プレイシーン描画処理
 			Play.DrawPlay();
-			Player.Draw();
+			
 
 		}//SCENE_ID_LOOP_PLAY終わりの括弧
 		break;

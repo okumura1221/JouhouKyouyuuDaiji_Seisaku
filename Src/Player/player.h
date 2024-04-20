@@ -16,7 +16,6 @@ protected:
 	int playerHan[11] = { 0 };				//プレイヤー画像
 	const int Player_Animation = 11;			//プレイヤーのアニメーション数
 	const int playerSize = 64;					//プレイヤー画像サイズ
-	float playerX = 0.0f, playerY = 0.0f;	//座標
 
 	float BasePlayerSpeed = 0.5f;				//プレイヤー基本移動速度
 	float MaxPlayerSpeed = 5.0f;				//プレイヤー最大移動速度
@@ -33,12 +32,12 @@ protected:
 	int mouseX   = 0, mouseY = 0;			//マウス座標
 	bool mauseOnPicture = false;			//マウスポイントとマウス画像が重なっているか
 	bool mauseGetFlag = false;				//マウスポイントとマウス画像が同期しているか
-	VECTOR m_pos;
-
+	VECTOR m_pos;//プレイヤーの座標
+	VECTOR m_next_pos;//次のフレームの座標
 	float speed;
-private:
+
 	VECTOR m_move_vec;
-	VECTOR mouse_pos;
+	VECTOR mouse_pos = { 0 };
 
 public:
 	Player();
@@ -59,10 +58,10 @@ public:
 	//プレイヤー
 
 	//プレイヤーのｘ座標を得る
-	float GetPlayerPosX() { return playerX; }
+	float GetPlayerPosX() { return m_pos.x; }
 
 	//プレイヤーのｙ座標を得る
-	float GetPlayerPosY() { return playerY; }
+	float GetPlayerPosY() { return m_pos.y; }
 
 	//プレイヤーのＸサイズを得る
 	int GetPlayerSizeX() { return playerSize; }
@@ -73,6 +72,22 @@ public:
 	//プレイヤーの進んでいる方向をチェック
 	void GetMoveDirection(bool* _dirArray);
 
+
+	//プレイヤーのｘ座標を得る
+	float GetNextPlayerPosX() { return m_next_pos.x; }
+
+	//プレイヤーのｙ座標を得る
+	float GetNextPlayerPosY() { return m_next_pos.y; }
+
+	//プレイヤーのx座標をセット
+	void SetPlayerNextPosX(float new_pos_x) { m_next_pos.x = new_pos_x; }
+
+	//プレイヤーのｙ座標をセット
+	void SetPlayerNextPosY(float new_pos_y) { m_next_pos.y = new_pos_y; }
+
+
 	//線形補完関数
 	float lerp(float start, float end, float t);
+
+
 };

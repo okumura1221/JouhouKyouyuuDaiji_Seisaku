@@ -25,17 +25,17 @@ Player::Player()
 {
 	m_move_vec = { 0 };
 	mouse_pos = { 0 };
+	m_next_pos = { 0 };
 }
 
 Player::~Player()
 {
-	Fin();
 }
 
 //初期化
 void Player::Init() {
-	m_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
-			  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)) };
+	m_next_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
+			  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)),0 };
 	//プレイヤー画像読み込み
 	//playerHan = LoadGraph(PLAYER_PATH);
 	LoadDivGraph("Data/Image/Player/player_div.png", 12, 4, 3, 64, 64, playerHan);
@@ -70,11 +70,14 @@ void Player::Step() {
 		
 	//マウスの位置を取得
 	
-
 	// マウスポインタとキャラクターの距離を計算
 	int dx = mouse_pos.x - (m_pos.x + ((float)playerSize / 2));
 	int dy = mouse_pos.y - (m_pos.y + ((float)playerSize / 2));
 	float distance = sqrt(dx * dx + dy * dy);
+
+	//座標を決定
+	m_pos = m_next_pos;
+
 
 	// 一定距離内にマウスポインタがある場合、キャラクターが逃げる
 	if (distance < DISTANCE) {
@@ -84,9 +87,9 @@ void Player::Step() {
 
 		speed = currentSpeed;
 
-		m_pos.x -= speed * cos(angle); // X方向の移動
+		m_next_pos.x -= speed * cos(angle); // X方向の移動
 
-		m_pos.y -= speed * sin(angle); // Y方向の移動
+		m_next_pos.y -= speed * sin(angle); // Y方向の移動
 	}
 	else speed = 0;
 	//スピードを出しすぎたらゲームオーバー
@@ -112,6 +115,10 @@ void Player::Step() {
 	//{
 	//	m_pos.y = WINDOW_HEIGHT - PLAYER_MOVE_SPACE_Y;
 	//}
+}
+
+void Player::Fin()
+{
 }
 
 void Player::Draw() {
@@ -160,13 +167,10 @@ void Player::Draw() {
 		, mouse_pos.x, mouse_pos.y, mouse_pos.z);
 	DrawFormatString(0, 110, GetColor(255, 0, 255),
 		"加速度:%f", speed);
+
+	DrawFormatString(0, 165, GetColor(255, 0, 255),
+		"%f", GetPlayerPosX());
 }
-
-void Player::Fin() {
-	//プレイヤー画像の後処理
-
-}
-
 
 // 進んでいる方向をチェック
 // 上下左右の順になっている
