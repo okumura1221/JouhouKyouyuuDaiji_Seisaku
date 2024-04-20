@@ -34,6 +34,8 @@ Player::~Player()
 
 //初期化
 void Player::Init() {
+
+	SetMouseDispFlag(true);
 	m_next_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
 			  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)),0 };
 	//プレイヤー画像読み込み
@@ -94,7 +96,6 @@ void Player::Step() {
 	else speed = 0;
 	//スピードを出しすぎたらゲームオーバー
 	if (speed >= PLAYER_SPEED_MAX) {
-		SetMouseDispFlag(true);
 		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	}
 
@@ -175,7 +176,24 @@ void Player::Draw() {
 // 進んでいる方向をチェック
 // 上下左右の順になっている
 void Player::GetMoveDirection(bool* _dirArray) {
+	// 右方向のチェック
+	if (GetNextPlayerPosX() > GetPlayerPosX()) {
+		_dirArray[3] = true;
+	}
 
+	// 左方向のチェック
+	if (GetNextPlayerPosX() < GetPlayerPosX()) {
+		_dirArray[2] = true;
+	}
+	// 下方向のチェック
+	if (GetNextPlayerPosY() > GetPlayerPosY()) {
+		_dirArray[1] = true;
+	}
+
+	// 上方向のチェック
+	if (GetNextPlayerPosY() < GetPlayerPosY()) {
+		_dirArray[0] = true;
+	}
 }
 
 float Player::lerp(float start, float end, float t) {

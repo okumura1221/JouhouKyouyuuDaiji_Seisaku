@@ -100,10 +100,6 @@ void ScenePlay::MAPCollision::MapCollision() {
 	{
 		for (int mapIndexX = 0; mapIndexX < MAP_DATA_X; mapIndexX++)
 		{
-			// ブロック以外は処理しない
-			if (CMap->m_MapData[mapIndexY][mapIndexX] == 0)
-				continue;
-
 			// どの方向に進んでいたかチェック
 			bool dirArray[4] = { false,false,false,false };
 			player->GetMoveDirection(dirArray);
@@ -126,21 +122,30 @@ void ScenePlay::MAPCollision::MapCollision() {
 
 			// 当たっているかチェック
 			if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh)) {
-				// 上方向の修正
-				if (dirArray[0]) {
-					// めり込み量を計算する
-					int overlap = By + Bh - Ay;
-					player->SetPlayerNextPosY(Ay + overlap);
-				}
 
-				// 下方向の修正
-				if (dirArray[1]) {
-					// めり込み量を計算する
-					int overlap = Ay + Ah - By;
-					player->SetPlayerNextPosY(Ay - overlap);
 
+				// ブロック以外の場所には進めない
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 0)
+				{
+					// 上方向の修正
+					if (dirArray[0]) {
+						// めり込み量を計算する
+						int overlap = By + Bh - Ay;
+						player->SetPlayerNextPosY(Ay + overlap);
+					}
+
+					// 下方向の修正
+					if (dirArray[1]) {
+						// めり込み量を計算する
+						int overlap = Ay + Ah - By;
+						player->SetPlayerNextPosY(Ay - overlap);
+
+					}
 				}
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
+					g_CurrentSceneID = SCENE_ID_INIT_CLEAR;
 			}
+
 		}
 	}
 	// X方向のみ当たり判定をチェックする
@@ -148,9 +153,6 @@ void ScenePlay::MAPCollision::MapCollision() {
 	{
 		for (int mapIndexX = 0; mapIndexX < MAP_DATA_X; mapIndexX++)
 		{
-			// ブロック以外は処理しない
-			if (CMap->m_MapData[mapIndexY][mapIndexX] == 0)
-				continue;
 
 			// どの方向に進んでいたかチェック
 			// ※Playerクラスに進む方向をチェックする関数を準備しています。
@@ -177,20 +179,28 @@ void ScenePlay::MAPCollision::MapCollision() {
 
 			// 当たっているかチェック
 			if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh)) {
-				// 左方向の修正
-				if (dirArray[2]) {
-					// めり込み量を計算する
-					int overlap = Bx + Bw - Ax;
-					player->SetPlayerNextPosX(Ax + overlap);
-				}
+				// ブロック以外の場所には進めない
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 0)
+				{
+					// 左方向の修正
+					if (dirArray[2]) {
+						// めり込み量を計算する
+						int overlap = Bx + Bw - Ax;
+						player->SetPlayerNextPosX(Ax + overlap);
+					}
 
-				// 右方向の修正
-				if (dirArray[3]) {
-					// めり込み量を計算する
-					int overlap = Ax + Aw - Bx;
-					player->SetPlayerNextPosX(Ax - overlap);
+					// 右方向の修正
+					if (dirArray[3]) {
+						// めり込み量を計算する
+						int overlap = Ax + Aw - Bx;
+						player->SetPlayerNextPosX(Ax - overlap);
+					}
 				}
+				//水に触れると
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
+					g_CurrentSceneID = SCENE_ID_INIT_CLEAR;
 			}
+
 		}
 	}
 }
