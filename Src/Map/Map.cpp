@@ -18,7 +18,7 @@ Map::~Map() {}
 
 void Map::Init() {
 	// 画像の読み込み
-	LoadDivGraph("Data/Image/Map/map.png", 4, 2, 2, 64, 64, mapHandle);
+	LoadDivGraph("Data/Image/Map/map_div.png", 8, 2, 4, 64, 64, mapHandle);
 
 	// マップデータを読み込む
 	FILE* fp;

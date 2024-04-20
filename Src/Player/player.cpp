@@ -98,24 +98,6 @@ void Player::Step() {
 	if (speed >= PLAYER_SPEED_MAX) {
 		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	}
-
-	////プレイヤーが範囲外に行かない処理
-	//if (m_pos.x <= PLAYER_MOVE_SPACE_X)
-	//{
-	//	m_pos.x = PLAYER_MOVE_SPACE_X;
-	//}
-	//if (m_pos.x >= WINDOW_WIDTH - PLAYER_MOVE_SPACE_X)
-	//{
-	//	m_pos.x = WINDOW_WIDTH - PLAYER_MOVE_SPACE_X;
-	//}
-	//if (m_pos.y <= PLAYER_MOVE_SPACE_Y)
-	//{
-	//	m_pos.y = PLAYER_MOVE_SPACE_Y;
-	//}
-	//if (m_pos.y >= WINDOW_HEIGHT - PLAYER_MOVE_SPACE_Y)
-	//{
-	//	m_pos.y = WINDOW_HEIGHT - PLAYER_MOVE_SPACE_Y;
-	//}
 }
 
 void Player::Fin()

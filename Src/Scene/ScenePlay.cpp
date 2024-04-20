@@ -94,7 +94,6 @@ void ScenePlay::FinPlay()
 // ƒ}ƒbƒv‚Ì“–‚½‚è”»’è
 void ScenePlay::MAPCollision::MapCollision() {
 
-
 	// Y•ûŒü‚Ì‚Ý“–‚½‚è”»’è‚ðƒ`ƒFƒbƒN‚·‚é
 	for (int mapIndexY = 0; mapIndexY < MAP_DATA_Y; mapIndexY++)
 	{
@@ -142,6 +141,7 @@ void ScenePlay::MAPCollision::MapCollision() {
 
 					}
 				}
+				//…‚ÉG‚ê‚é‚Æ‰æ–Ê‘JˆÚ
 				if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
 					g_CurrentSceneID = SCENE_ID_INIT_CLEAR;
 			}
@@ -196,7 +196,7 @@ void ScenePlay::MAPCollision::MapCollision() {
 						player->SetPlayerNextPosX(Ax - overlap);
 					}
 				}
-				//…‚ÉG‚ê‚é‚Æ
+				//…‚ÉG‚ê‚é‚Æ‰æ–Ê‘JˆÚ
 				if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
 					g_CurrentSceneID = SCENE_ID_INIT_CLEAR;
 			}
