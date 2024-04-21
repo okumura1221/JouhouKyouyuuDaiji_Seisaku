@@ -3,7 +3,7 @@
 #include <math.h>
 #include <cmath>
 #include "../MyMath/MyMath.h"
-
+#include"../Scene/ScenePlay.h"
 //スクリーンサイズ設定
 #define WINDOW_WIDTH			(1280)
 #define WINDOW_HEIGHT			(720)						
@@ -97,9 +97,18 @@ void Player::Step() {
 		else speed = 0;
 		//スピードを出しすぎたらゲームオーバー
 		if (speed >= PLAYER_SPEED_MAX) {
-			g_CurrentSceneID = SCENE_ID_FIN_PLAY;
+			g_CurrentSceneID = SCENE_ID_INIT_PLAY;
 		}
 	}
+	else
+		if (distance < (DISTANCE / 4))
+		{
+			if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+			{
+				//ScenePlay::Setstage_num(ScenePlay::Getstage_num()+1);
+				g_CurrentSceneID = SCENE_ID_INIT_PLAY;
+			}
+		}
 }
 
 void Player::Fin()

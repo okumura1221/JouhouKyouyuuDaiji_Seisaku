@@ -31,6 +31,7 @@ void Enemy::Init() {
 	LoadDivGraph("Data/Image/Player/player_div.png", 12, 4, 3, 64, 64, EnemyHan);
 	speed = 0;
 	animIndex = 1;
+	enemyStopFlag = false;
 }
 void Enemy::Step(VECTOR mouse, VECTOR player) {
 	VECTOR playerPos = player; // プレイヤーの位置を取得
@@ -80,12 +81,21 @@ void Enemy::Step(VECTOR mouse, VECTOR player) {
 			float currentSpeed = lerp(BasePlayerSpeed, MaxPlayerSpeed, t);
 
 			speed = currentSpeed;
+			if (!enemyStopFlag) {
+				m_next_pos.x += speed * cos(angle); // X方向の移動
 
-			m_next_pos.x += speed * cos(angle); // X方向の移動
-
-			m_next_pos.y += speed * sin(angle); // Y方向の移動
+				m_next_pos.y += speed * sin(angle); // Y方向の移動
+			}
+			if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+			{
+				enemyStopFlag = true;
+			}
 		}
-		else speed = 0;
+		else
+		{
+			speed = 0;
+			enemyStopFlag = false;
+		}
 	}
 }
 

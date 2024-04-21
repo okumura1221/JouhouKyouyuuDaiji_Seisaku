@@ -39,7 +39,7 @@ void ScenePlay::InitPlay()
 	enemy = new Enemy;
 	CMap = new Map;
 
-	CMap->Init();
+	CMap->Init(stage_num);
 	player->Init();
 	enemy->Init();
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
@@ -47,7 +47,8 @@ void ScenePlay::InitPlay()
 
 //プレイシーン通常処理
 void ScenePlay::StepPlay(){
-	
+	if (stage_num>= STAGE_MAX_NUM)
+		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	// Enterを押したら
 	if (InputKey::Push(KEY_INPUT_RETURN))
 	{
@@ -399,4 +400,8 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 				//CMap->Set_Invert_Color(mapIndexY, mapIndexX);
 		}
 	}
+}
+void  ScenePlay::Setstage_num(int num)
+{
+	stage_num = num;
 }

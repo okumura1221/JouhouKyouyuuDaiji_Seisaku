@@ -27,7 +27,7 @@ public:
 	int mposX;  //マップ座標
 
 	// 初期化
-	void Init();
+	void Init(int num);
 
 	// 描画
 	void Draw(bool playeron, bool enemyeron);

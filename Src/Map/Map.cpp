@@ -16,13 +16,20 @@ Map::Map() :m_MapData{}
 
 Map::~Map() {}
 
-void Map::Init() {
+void Map::Init(int num) {
 	// 画像の読み込み
 	LoadDivGraph("Data/Image/Map/map_div.png", 8, 2, 4, 64, 64, mapHandle);
 
 	// マップデータを読み込む
-	FILE* fp;
-	fopen_s(&fp, "Data/MapData/Map_1/map.csv", "r"); // ファイルを開く
+	FILE* fp=0;
+	if (num == 0)
+		fopen_s(&fp, "Data/MapData/Map_1/map.csv", "r"); // ファイルを開く
+	if (num == 1)
+		fopen_s(&fp, "Data/MapData/Map_2/map.csv", "r"); // ファイルを開く
+	if (num == 2)
+		fopen_s(&fp, "Data/MapData/Map_3/map.csv", "r"); // ファイルを開く
+	if (num == 3)
+		fopen_s(&fp, "Data/MapData/Map_4/map.csv", "r"); // ファイルを開く
 	if (fp == NULL) // ファイルが開けなかったら
 	{
 		DrawString(0, 0, "dgsgh", GetColor(255, 255, 255));

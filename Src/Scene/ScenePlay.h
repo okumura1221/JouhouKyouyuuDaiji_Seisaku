@@ -6,6 +6,9 @@
 #define BACK_MAX_NUM 2
 
 #define TEXT_PATH	 "Data/Image/Play/text.png"
+
+#define STAGE_MAX_NUM 4
+
 class ScenePlay {
 private:
 	// プレイ背景ハンドル
@@ -16,6 +19,7 @@ private:
 	//テキストハンドル
 	int TextHan = 0;
 
+	int stage_num = 0;
 public:
 	ScenePlay();
 	~ScenePlay();
@@ -38,4 +42,7 @@ public:
 		void MapCollision(int num);
 
 	};
+	int Getstage_num() { return stage_num; }
+
+	void  Setstage_num(int num);
 };
