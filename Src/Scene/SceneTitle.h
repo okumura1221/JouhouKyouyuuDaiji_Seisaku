@@ -9,6 +9,7 @@
 
 //ƒ^ƒCƒgƒ‹BGM
 #define TITLE_BGM_PATH "Data/Sound/TitleSceneBGM.mp3"
+#define BUTTON_SE_PATH "Data/Sound/ButtonSound.mp3"
 
 class SceneTitle {
 private:
@@ -19,6 +20,12 @@ private:
 	int mouseX, mouseY;
 
 	int TitleSoundPath;
+	int ButtonSEPath;
+
+	int NextSceneCnt;
+
+	bool SceneFlag;
+
 public:
 	SceneTitle();
 	~SceneTitle();
