@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Src\Collision\Collision.cpp" />
+    <ClCompile Include="Src\Enemy\Enemy.cpp" />
     <ClCompile Include="Src\FrameRate\FrameRate.cpp" />
     <ClCompile Include="Src\Input\Input.cpp" />
     <ClCompile Include="Src\Main.cpp" />
@@ -153,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Collision\Collision.h" />
+    <ClInclude Include="Src\Enemy\Enemy.h" />
     <ClInclude Include="Src\FrameRate\FrameRate.h" />
     <ClInclude Include="Src\Input\Input.h" />
     <ClInclude Include="Src\Map\Map.h" />

@@ -100,4 +100,8 @@ public:
 	void SetplayerGoalFlag();
 
 	void SetplayerGoal(float x, float y);
+
+	VECTOR  GetplayerVector() { return m_pos; };
+
+	VECTOR  GetMouseVector() { return mouse_pos; };
 };

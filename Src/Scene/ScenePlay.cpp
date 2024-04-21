@@ -4,8 +4,9 @@
 #include"../Map/Map.h"
 #include "../Collision/Collision.h"
 #include"../Player/player.h"
-
+#include"../Enemy/Enemy.h"
 Player* player;
+Enemy* enemy;
 Map* CMap;
 ScenePlay::MAPCollision mapcollision;
 
@@ -34,10 +35,12 @@ void ScenePlay::InitPlay()
 	backX[1] = 1280;
 
 	player = new Player;
+	enemy = new Enemy;
 	CMap = new Map;
 
 	CMap->Init();
 	player->Init();
+	enemy->Init();
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
 }
 
@@ -50,8 +53,8 @@ void ScenePlay::StepPlay(){
 		// プレイシーンを終了する
 		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	}
-
 	player->Step();
+	//enemy->Step(*player->GetMouseVector(), *player->GetplayerVector());
 	//マップとの当たり判定
 	mapcollision.MapCollision();
 
@@ -73,6 +76,7 @@ void ScenePlay::DrawPlay()
 
 	CMap->Draw();
 	player->Draw();
+	enemy->Draw();
 	DrawGraph(10, 50, TextHan, true);
 }
 
@@ -83,7 +87,8 @@ void ScenePlay::FinPlay()
 	player = nullptr;
 	delete CMap;
 	CMap = nullptr;
-
+	delete enemy;
+	enemy = nullptr;
 	for (int i = 0;i < BACK_MAX_NUM;i++)
 		DeleteGraph(PlayBGHandle[i]);
 
@@ -151,15 +156,12 @@ void ScenePlay::MAPCollision::MapCollision() {
 				}
 				//スイッチを押すと色が反転
 				if (CMap->m_MapData[mapIndexY][mapIndexX] == 8)
-				{
 					player->SetplayerOnSwitchTrue();
-					if (player->GetplayerOnSwitch())
-					{
-						CMap->Set_Invert_Color(mapIndexY, mapIndexX);
-					}
-					else player->SetplayerOnSwitchFalse();
+				else player->SetplayerOnSwitchFalse();
+				if (player->GetplayerOnSwitch())
+				{
+					CMap->Set_Invert_Color(mapIndexY, mapIndexX);
 				}
-				//else player->SetplayerOnSwitchFalse();
 				
 			}
 
@@ -225,15 +227,15 @@ void ScenePlay::MAPCollision::MapCollision() {
 					player->SetplayerGoal(Bx, By);
 				}
 				//スイッチを押すと色が反転
-				if (CMap->m_MapData[4][10] == 8)
-				{
+				if (CMap->m_MapData[mapIndexY][mapIndexX] == 8)
 					player->SetplayerOnSwitchTrue();
+				else player->SetplayerOnSwitchFalse();
 					if (player->GetplayerOnSwitch())
 					{
 						CMap->Set_Invert_Color(mapIndexY, mapIndexX);
 					}
-					else player->SetplayerOnSwitchFalse();
-				}
+					
+				
 				//else player->SetplayerOnSwitchFalse();
 				
 			}
