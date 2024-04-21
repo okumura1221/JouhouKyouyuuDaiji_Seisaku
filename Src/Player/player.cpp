@@ -168,7 +168,7 @@ void Player::Draw() {
 	DrawFormatString(0, 110, GetColor(255, 0, 255),
 		"‰Á‘¬“x:%f", speed);
 
-	DrawFormatString(0, 165, GetColor(255, 0, 255),
+	DrawFormatString(0, 250, GetColor(255, 0, 255),
 		"%f", GetPlayerPosX());
 }
 

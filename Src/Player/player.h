@@ -19,7 +19,7 @@ protected:
 
 	float BasePlayerSpeed = 0.5f;				//プレイヤー基本移動速度
 	float MaxPlayerSpeed = 5.0f;				//プレイヤー最大移動速度
-	float accelerationFactor = 0.0001f;			//加速度
+	//float accelerationFactor = 0.0001f;			//加速度
 
 	int animState = 0;						//右向きか左向きか
 	int animFlag  = 0;						//アニメーションの種類
@@ -101,7 +101,7 @@ public:
 
 	void SetplayerGoal(float x, float y);
 
-	VECTOR  GetplayerVector() { return m_pos; };
+	VECTOR  GetplayerVector() const{ return m_pos; };
 
-	VECTOR  GetMouseVector() { return mouse_pos; };
+	VECTOR  GetMouseVector() const { return mouse_pos; };
 };

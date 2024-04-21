@@ -30,7 +30,7 @@ public:
 	void Init();
 
 	// •`‰æ
-	void Draw();
+	void Draw(bool playeron, bool enemyeron);
 
 	void Set_Invert_Color(int y, int x);
 };

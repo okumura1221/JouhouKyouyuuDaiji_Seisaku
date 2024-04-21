@@ -13,7 +13,7 @@ SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;
 
 // Win32アプリケーションは WinMain関数 から始まる
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-{
+ {
 	//ウィンドウの状態を設定する
 	ChangeWindowMode(true);
 

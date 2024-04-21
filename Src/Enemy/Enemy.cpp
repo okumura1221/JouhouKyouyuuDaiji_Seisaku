@@ -5,16 +5,7 @@
 #include <cmath>
 #include "../MyMath/MyMath.h"
 
-//スクリーンサイズ設定
-#define WINDOW_WIDTH			(1280)
-#define WINDOW_HEIGHT			(720)						
-
-//プレイヤーが動ける範囲設定
-#define PLAYER_MOVE_SPACE_X			(1180)		
-#define PLAYER_MOVE_SPACE_Y			(620)						
-
 //画像パス
-//#define PLAYER_PATH "Data/Image/Player/player.png"
 #define PLAYER_PATH "Data/Image/Enemy/player_div.png"
 
 //プレイヤーが出していい最高スピード
@@ -23,6 +14,7 @@
 Enemy::Enemy()
 {
 	m_move_vec = { 0 };
+	m_next_pos = { 0 };
 	m_next_pos = { 0 };
 }
 
@@ -33,61 +25,67 @@ Enemy::~Enemy()
 //初期化
 void Enemy::Init() {
 
-	SetMouseDispFlag(true);
-	m_next_pos = { ((WINDOW_WIDTH / 2) - ((float)EnemySize / 2)),
-			  ((WINDOW_HEIGHT / 2) - ((float)EnemySize / 2)),0 };
-	//プレイヤー画像読み込み
-	//playerHan = LoadGraph(PLAYER_PATH);
+	m_next_pos = { ((WINDOW_WIDTH / 4) - ((float)EnemySize / 2)),
+			  ((WINDOW_HEIGHT / 4) - ((float)EnemySize / 2)),0 };
+	//画像読み込み
 	LoadDivGraph("Data/Image/Player/player_div.png", 12, 4, 3, 64, 64, EnemyHan);
 	speed = 0;
 	animIndex = 1;
 }
 void Enemy::Step(VECTOR mouse, VECTOR player) {
-	VECTOR playerPos = player=a; // プレイヤーの位置を取得
+	VECTOR playerPos = player; // プレイヤーの位置を取得
 	VECTOR mousePos = mouse;
 
-	
-
-	// プレイヤーとの距離を計算
-	int dxPlayer = playerPos.x - (m_pos.x + ((float)EnemySize / 2));
-	int dyPlayer = playerPos.y - (m_pos.y + ((float)EnemySize / 2));
-	float distancePlayer = sqrt(dxPlayer * dxPlayer + dyPlayer * dyPlayer);
-
-	// マウスポインタとの距離を計算
-	int dxMouse = mousePos.x - (m_pos.x + ((float)EnemySize / 2));
-	int dyMouse = mousePos.y - (m_pos.y + ((float)EnemySize / 2));
-	float distanceMouse = sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-
-	// プレイヤーに優先的に近づく
-	bool prioritizePlayer = distancePlayer < distanceMouse;
-
-	// 座標を決定
 	m_pos = m_next_pos;
 
-	// 敵がプレイヤーまたはマウスポインタに近づく
-	if (!enemyStopFlag) {
-		if (prioritizePlayer) {
-			ApproachTarget(playerPos, distancePlayer);
-		}
-		else {
-			ApproachTarget(mousePos, distanceMouse);
-		}
+	int dx_player = player.x - m_pos.x;
+	int dy_player = player.y - m_pos.y;
+	float distance_player = sqrt(dx_player * dx_player + dy_player * dy_player);
+	
+	int dx_mouse = mouse.x - (m_pos.x + ((float)EnemySize / 2));
+	int dy_mouse = mouse.y - (m_pos.y + ((float)EnemySize / 2));
+	float distance_mouse = sqrt(dx_mouse * dx_mouse + dy_mouse * dy_mouse);
+
+	if (distance_mouse < DISTANCE)
+	{
+		if (distance_player < DISTANCE)
+			MouseOrPlayer = true;
+		else MouseOrPlayer = false;
+	}
+	if (distance_player < DISTANCE)
+	{
+		MouseOrPlayer = true;
 	}
 
-	// マウスポインタに反応している時に左クリックされたら停止
-	if (!prioritizePlayer && (GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
-		enemyStopFlag = true;
+	if (MouseOrPlayer)
+	{
+		if (distance_player < DISTANCE) {
+			float angle = atan2(dy_player, dx_player); // マウスポインタとキャラクターの角度
+			float t = (DISTANCE - distance_player) / 100; // 距離に応じた補間係数
+			float currentSpeed = lerp(BasePlayerSpeed, MaxPlayerSpeed, t);
+
+			speed = currentSpeed;
+
+			m_next_pos.x += speed * cos(angle); // X方向の移動
+
+			m_next_pos.y += speed * sin(angle); // Y方向の移動
+		}
+		else speed = 0;
 	}
-}
+	else
+	{
+		if (distance_mouse < DISTANCE) {
+			float angle = atan2(dy_mouse, dx_mouse); // プレイヤーとキャラクターの角度
+			float t = (DISTANCE - distance_mouse) / 100; // 距離に応じた補間係数
+			float currentSpeed = lerp(BasePlayerSpeed, MaxPlayerSpeed, t);
 
-void Enemy::ApproachTarget(VECTOR targetPos, float distance) {
-	if (distance < DISTANCE) {
-		float angle = atan2(targetPos.y - m_pos.y, targetPos.x - m_pos.x); // ターゲットとの角度
-		float t = (DISTANCE - distance) / 100; // 距離に応じた補間係数
-		float currentSpeed = lerp(BaseEnemySpeed, MaxEnemySpeed, t);
+			speed = currentSpeed;
 
-		m_next_pos.x += currentSpeed * cos(angle); // X方向の移動
-		m_next_pos.y += currentSpeed * sin(angle); // Y方向の移動
+			m_next_pos.x += speed * cos(angle); // X方向の移動
+
+			m_next_pos.y += speed * sin(angle); // Y方向の移動
+		}
+		else speed = 0;
 	}
 }
 
@@ -144,10 +142,8 @@ void Enemy::Draw() {
 	}
 	SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);	
 	DrawGraph(m_pos.x, m_pos.y, EnemyHan[animIndex], true);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-	DrawFormatString(0, 200, GetColor(255, 0, 255),
-		"%f", a.x);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 // 進んでいる方向をチェック
@@ -185,15 +181,4 @@ void Enemy::SetEnemyOnSwitchTrue()
 void Enemy::SetEnemyOnSwitchFalse()
 {
 	EnemyOnSwitch = false;
-}
-
-void Enemy::SetEnemyGoalFlag()
-{
-	EnemyGoalFlag = true;
-}
-
-void Enemy::SetEnemyGoal(float x, float y)
-{
-	m_pos.x = x;
-	m_pos.y = y;
 }

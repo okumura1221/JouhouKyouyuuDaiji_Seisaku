@@ -35,7 +35,7 @@ public:
 	struct MAPCollision
 	{
 		// ƒ}ƒbƒv‚Ì“–‚½‚è”»’è
-		void MapCollision();
+		void MapCollision(int num);
 
 	};
 };

@@ -13,15 +13,19 @@ protected:
 
 	float BaseEnemySpeed = 0.5f;				//プレイヤー基本移動速度
 	float MaxEnemySpeed = 5.0f;				//プレイヤー最大移動速度
-	float accelerationFactor = 0.0001f;			//加速度
+//	float accelerationFactor = 0.0001f;			//加速度
 
 	int animState = 0;						//右向きか左向きか
 	int animFlag  = 0;						//アニメーションの種類
 	int animIndex = 0;						//アニメーションの添え字
 	int changeAnimFlame = 0;				//アニメーション切り替え時間
+
 	int animFlameCount  = 0;				//切り替え時間カウント
 	bool EnemyOnSwitch = false;			//プレイヤーとスイッチが重なっているか
 	bool EnemyGoalFlag = false;			//プレイヤーがゴールにいるか
+
+	float BasePlayerSpeed = 0.2f;				//プレイヤー基本移動速度
+	float MaxPlayerSpeed = 4.0f;				//プレイヤー最大移動速度
 
 	VECTOR m_pos;//プレイヤーの座標
 	VECTOR m_next_pos;//次のフレームの座標
@@ -29,9 +33,9 @@ protected:
 
 	VECTOR m_move_vec;
 
-	bool enemyStopFlag;
+	bool enemyStopFlag = false;
 
-	VECTOR a;
+	bool MouseOrPlayer = false;//マウスに反応時false、プレイヤーに反応時true;
 public:
 	Enemy();
 	~Enemy();
@@ -65,7 +69,6 @@ public:
 	//プレイヤーの進んでいる方向をチェック
 	void GetMoveDirection(bool* _dirArray);
 
-
 	//プレイヤーのｘ座標を得る
 	float GetNextEnemyPosX() { return m_next_pos.x; }
 
@@ -78,7 +81,6 @@ public:
 	//プレイヤーのｙ座標をセット
 	void SetEnemyNextPosY(float new_pos_y) { m_next_pos.y = new_pos_y; }
 
-
 	//線形補完関数
 	float lerp(float start, float end, float t);
 
@@ -88,9 +90,5 @@ public:
 
 	bool GetEnemyOnSwitch() { return EnemyOnSwitch; };
 
-	void SetEnemyGoalFlag();
-
-	void SetEnemyGoal(float x, float y);
-
-	void ApproachTarget(VECTOR targetPos, float distance);
+	//void ApproachTarget(VECTOR targetPos, float distance);
 };
