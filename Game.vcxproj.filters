@@ -31,9 +31,6 @@
     <Filter Include="Player">
       <UniqueIdentifier>{54fd25da-8f3a-4e67-bcef-337d1a316c63}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{2846852f-377a-4fdd-938c-817b8b070da9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Enemy">
       <UniqueIdentifier>{38318263-ab9b-4fda-a41c-81a1466934b9}</UniqueIdentifier>
     </Filter>
@@ -69,9 +66,6 @@
     <ClCompile Include="Src\Player\player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\MyMath\MyMath.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Enemy\Enemy.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
@@ -106,9 +100,6 @@
     </ClInclude>
     <ClInclude Include="Src\Player\player.h">
       <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\MyMath\MyMath.h">
-      <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Src\Enemy\Enemy.h">
       <Filter>Enemy</Filter>

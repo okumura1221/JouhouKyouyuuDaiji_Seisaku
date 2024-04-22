@@ -2,7 +2,6 @@
 #include "player.h"
 #include <math.h>
 #include <cmath>
-#include "../MyMath/MyMath.h"
 #include"../Scene/ScenePlay.h"
 //スクリーンサイズ設定
 #define WINDOW_WIDTH			(1280)

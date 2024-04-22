@@ -3,7 +3,6 @@
 #include "../Player/player.h"
 #include <math.h>
 #include <cmath>
-#include "../MyMath/MyMath.h"
 
 //‰æ‘œƒpƒX
 #define PLAYER_PATH "Data/Image/Enemy/player_div.png"
