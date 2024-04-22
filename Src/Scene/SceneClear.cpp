@@ -52,6 +52,10 @@ void SceneClear::StepClear()
 	//}
 
 	ClearEffectposY += 5;
+	if (ClearEffectposY >= 720)
+	{
+		ClearEffectposY = -720;
+	}
 
 	//タイトルボタンを押したら
 	if (mouseX >= 273 && mouseX <= 1022 && mouseY >= 588 && mouseY <= 675 &&
@@ -86,7 +90,7 @@ void SceneClear::DrawClear()
 
 	DrawGraph(ClearEffectposX, ClearEffectposY, ClearEffectHandle, true);
 
-	DrawRotaGraph(ClearEffectposX,ClearEffectposY,1.0f,0.0f,ClearEffectHandle,true);
+	//DrawRotaGraph(ClearEffectposX,ClearEffectposY,1.0f,0.0f,ClearEffectHandle,true);
 }
 
 //クリアシーン終了処理
@@ -102,6 +106,8 @@ void SceneClear::FinClear()
 	//BGMハンドル
 	DeleteSoundMem(ClearSoundPath);
 	DeleteSoundMem(ButtonSEPath);
+
+	DeleteGraph(ClearEffectHandle);
 
 	//タイトルシーンへ移動
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;
