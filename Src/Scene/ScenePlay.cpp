@@ -165,9 +165,9 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 0 ||
 						CMap->m_MapData[mapIndexY][mapIndexX] == 6 ||
 						CMap->m_MapData[mapIndexY][mapIndexX] == 7 &&
-						player->GetplayerOnSwitch() ||
-						CMap->m_MapData[mapIndexY][mapIndexX] == 7 &&
-						enemy->GetEnemyOnSwitch())
+						!CMap->Get_Invert_Color()||
+						CMap->m_MapData[mapIndexY][mapIndexX] == 2 &&
+						CMap->Get_Invert_Color())
 					{
 						// ã•ûŒü‚ÌC³
 						if (dirArray[0]) {
@@ -234,10 +234,10 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					// ƒuƒƒbƒNˆÈŠO‚ÌêŠ‚É‚Íi‚ß‚È‚¢
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 0 ||
 						CMap->m_MapData[mapIndexY][mapIndexX] == 6 ||
-						CMap->m_MapData[mapIndexY][mapIndexX] == 7 &&
-						enemy->GetEnemyOnSwitch() ||
-						CMap->m_MapData[mapIndexY][mapIndexX] == 7 &&
-						player->GetplayerOnSwitch())
+						CMap->m_MapData[mapIndexY][mapIndexX] == 7 && 
+						!CMap->Get_Invert_Color() ||
+						CMap->m_MapData[mapIndexY][mapIndexX] == 2 &&
+						CMap->Get_Invert_Color())
 					{
 						// ã•ûŒü‚ÌC³
 						if (dirArray[0]) {
@@ -311,9 +311,9 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 0 ||
 						CMap->m_MapData[mapIndexY][mapIndexX] == 6||
 						CMap->m_MapData[mapIndexY][mapIndexX] == 7 &&
-						player->GetplayerOnSwitch()||
-						CMap->m_MapData[mapIndexY][mapIndexX] == 7 &&
-						enemy->GetEnemyOnSwitch())
+						!CMap->Get_Invert_Color() ||
+						CMap->m_MapData[mapIndexY][mapIndexX] == 2 &&
+						CMap->Get_Invert_Color())
 					{
 						// ¶•ûŒü‚ÌC³
 						if (dirArray[2]) {
@@ -380,9 +380,9 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 0 ||
 						CMap->m_MapData[mapIndexY][mapIndexX] == 6 ||
 						CMap->m_MapData[mapIndexY][mapIndexX] == 7&&
-						enemy->GetEnemyOnSwitch() ||
-						CMap->m_MapData[mapIndexY][mapIndexX] == 7 &&
-						player->GetplayerOnSwitch())
+						!CMap->Get_Invert_Color() ||
+						CMap->m_MapData[mapIndexY][mapIndexX] == 2 &&
+						CMap->Get_Invert_Color())
 					{
 						// ¶•ûŒü‚ÌC³
 						if (dirArray[2]) {

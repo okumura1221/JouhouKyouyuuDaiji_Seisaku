@@ -57,7 +57,7 @@ void Map::Draw(bool playeron, bool enemyeron) {
 			if (m_MapData[y][x] != 0) {
 				DrawGraph(x * MAP_SIZE, y * MAP_SIZE, mapHandle[m_MapData[y][x] - 1], true);
 			}
-			if (m_MapData[y][x] == 7) {
+			if (m_MapData[y][x] == 7|| m_MapData[y][x] == 2) {
 				if (Invert_Color_flag_full)
 					SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
 				DrawGraph(x * MAP_SIZE, y * MAP_SIZE, mapHandle[m_MapData[y][x] - 1], true);
