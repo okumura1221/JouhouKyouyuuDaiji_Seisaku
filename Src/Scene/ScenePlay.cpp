@@ -25,10 +25,15 @@ ScenePlay::~ScenePlay() { FinPlay(); }
 //プレイシーンの初期化
 void ScenePlay::InitPlay()
 {
-	if (stage_change_flag) {
-		Setstage_num(Getstage_num() + 1);
-		stage_change_flag = false;
+	if (stage_num < STAGE_MAX_NUM-1)
+	{
+
+		if (stage_change_flag) {
+			Setstage_num(Getstage_num() + 1);
+			stage_change_flag = false;
+		}
 	}
+	else g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	// プレイ背景ハンドル
 	for (int i = 0;i < BACK_MAX_NUM;i++)
 	{
@@ -107,6 +112,7 @@ void ScenePlay::DrawPlay()
 //プレイシーン終了処理
 void ScenePlay::FinPlay()
 {
+	
 	delete player;
 	player = nullptr;
 	delete CMap;

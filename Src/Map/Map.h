@@ -35,5 +35,7 @@ public:
 
 	void Set_Invert_Color(int y, int x);
 	void Set_Invert_Color();
+
+	bool Get_Invert_Color() { return Invert_Color_flag_full; };
 };
 
