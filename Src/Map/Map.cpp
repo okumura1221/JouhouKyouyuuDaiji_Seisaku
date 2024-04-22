@@ -23,7 +23,7 @@ void Map::Init(int num) {
 	// マップデータを読み込む
 	FILE* fp=0;
 	if (num == 0)
-		fopen_s(&fp, "Data/MapData/Map_1/map.csv", "r"); // ファイルを開く
+		fopen_s(&fp, "Data/MapData/Map_1/map1.csv", "r"); // ファイルを開く
 	if (num == 1)
 		fopen_s(&fp, "Data/MapData/Map_2/map.csv", "r"); // ファイルを開く
 	if (num == 2)
