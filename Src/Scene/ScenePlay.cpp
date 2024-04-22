@@ -46,8 +46,8 @@ void ScenePlay::InitPlay()
 
 	stage_change_flag = false;
 	CMap->Init(stage_num);
-	player->Init();
-	enemy->Init();
+	player->Init(stage_num);
+	enemy->Init(stage_num);
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
 }
 

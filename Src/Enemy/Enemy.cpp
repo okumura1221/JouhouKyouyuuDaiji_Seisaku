@@ -23,9 +23,20 @@ Enemy::~Enemy()
 }
 
 //èâä˙âª
-void Enemy::Init() {
+void Enemy::Init(int num) {
 
-	m_next_pos = { ((WINDOW_WIDTH / 4) - ((float)EnemySize / 2)),
+	
+	if (num == 0)
+		m_next_pos = { ((WINDOW_WIDTH / 4) - ((float)EnemySize / 2)),
+				  ((WINDOW_HEIGHT / 4) - ((float)EnemySize / 2)),0 };
+	if (num == 1)
+		m_next_pos = { ((WINDOW_WIDTH / 4) - ((float)EnemySize / 2)),
+			  ((WINDOW_HEIGHT / 4) - ((float)EnemySize / 2)),0 };
+	if (num == 2)
+		m_next_pos = { ((WINDOW_WIDTH / 4) - ((float)EnemySize / 2)),
+				  ((WINDOW_HEIGHT / 4) - ((float)EnemySize / 2)),0 };
+	if (num == 3)
+		m_next_pos = { ((WINDOW_WIDTH / 4) - ((float)EnemySize / 2)),
 			  ((WINDOW_HEIGHT / 4) - ((float)EnemySize / 2)),0 };
 	//âÊëúì«Ç›çûÇ›
 	LoadDivGraph("Data/Image/Player/player_div.png", 12, 4, 3, 64, 64, EnemyHan);

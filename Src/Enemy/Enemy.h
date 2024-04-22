@@ -41,7 +41,7 @@ public:
 	~Enemy();
 
 	//‰Šú‰»
-	void Init();
+	void Init(int num);
 
 	//’Êíˆ—
 	void Step(VECTOR mouse, VECTOR player);

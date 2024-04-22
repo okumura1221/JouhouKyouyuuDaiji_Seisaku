@@ -33,11 +33,21 @@ Player::~Player()
 }
 
 //èâä˙âª
-void Player::Init() {
+void Player::Init(int num) {
 
 	SetMouseDispFlag(true);
-	m_next_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
-			  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)),0 };
+	if (num == 0)
+		m_next_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
+				  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)),0 };
+	if (num == 1)
+		m_next_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
+				  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)),0 };
+	if (num == 2)
+		m_next_pos = { ((WINDOW_WIDTH / 2) + ((float)playerSize / 2)),
+				  ((WINDOW_HEIGHT / 2) + ((float)playerSize / 2)),0 };
+	if (num == 3)
+		m_next_pos = { ((WINDOW_WIDTH / 2) - ((float)playerSize / 2)),
+				  ((WINDOW_HEIGHT / 2) - ((float)playerSize / 2)),0 };
 	//ÉvÉåÉCÉÑÅ[âÊëúì«Ç›çûÇ›
 	//playerHan = LoadGraph(PLAYER_PATH);
 	LoadDivGraph("Data/Image/Player/player_div.png", 12, 4, 3, 64, 64, playerHan);
