@@ -57,15 +57,15 @@ void Map::Draw(bool playeron, bool enemyeron) {
 			if (m_MapData[y][x] != 0) {
 				DrawGraph(x * MAP_SIZE, y * MAP_SIZE, mapHandle[m_MapData[y][x] - 1], true);
 			}
-			if (m_MapData[y][x] == 8) {
-				if(Invert_Color_flag[y][x])
-				SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
+			if (m_MapData[y][x] == 7) {
+				if (Invert_Color_flag_full)
+					SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
 				DrawGraph(x * MAP_SIZE, y * MAP_SIZE, mapHandle[m_MapData[y][x] - 1], true);
 				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 			}
-			if (m_MapData[y][x] == 7) {
-				if (playeron == true || enemyeron == true)
-					SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
+			if (m_MapData[y][x] == 8) {
+				if(Invert_Color_flag[y][x])
+				SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
 				DrawGraph(x * MAP_SIZE, y * MAP_SIZE, mapHandle[m_MapData[y][x] - 1], true);
 				SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 			}
@@ -80,3 +80,9 @@ void Map::Set_Invert_Color(int y,int x) {
 		Invert_Color_flag[y][x] = false;
 }
 
+void Map::Set_Invert_Color() {
+	if (!Invert_Color_flag_full)
+		Invert_Color_flag_full = true;
+	else
+		Invert_Color_flag_full = false;
+}
