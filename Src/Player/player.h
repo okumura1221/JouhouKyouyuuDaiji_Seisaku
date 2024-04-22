@@ -15,12 +15,11 @@ class Player {
 protected:
 	//プレイヤー変数
 	int playerHan[11] = { 0 };				//プレイヤー画像
-	const int Player_Animation = 11;			//プレイヤーのアニメーション数
-	const int playerSize = 64;					//プレイヤー画像サイズ
+	const int Player_Animation = 11;		//プレイヤーのアニメーション数
+	const int playerSize = 64;				//プレイヤー画像サイズ
 
-	float BasePlayerSpeed = 0.5f;				//プレイヤー基本移動速度
-	float MaxPlayerSpeed = 5.0f;				//プレイヤー最大移動速度
-	//float accelerationFactor = 0.0001f;			//加速度
+	float BasePlayerSpeed = 0.5f;			//プレイヤー基本移動速度
+	float MaxPlayerSpeed = 5.0f;			//プレイヤー最大移動速度
 
 	int animState = 0;						//右向きか左向きか
 	int animFlag  = 0;						//アニメーションの種類
