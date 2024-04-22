@@ -3,6 +3,7 @@
 constexpr int PLAYER_SPEED = 1;
 constexpr float DISTANCE = 200;
 
+extern bool stage_change_flag;
 
 enum Animation {
 	R,//‰E
