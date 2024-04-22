@@ -25,7 +25,7 @@ ScenePlay::~ScenePlay() { FinPlay(); }
 //プレイシーンの初期化
 void ScenePlay::InitPlay()
 {
-	if (stage_num < STAGE_MAX_NUM-1)
+	if (stage_num < STAGE_MAX_NUM)
 	{
 
 		if (stage_change_flag) {
@@ -33,7 +33,7 @@ void ScenePlay::InitPlay()
 			stage_change_flag = false;
 		}
 	}
-	else g_CurrentSceneID = SCENE_ID_FIN_PLAY;
+	
 	// プレイ背景ハンドル
 	for (int i = 0;i < BACK_MAX_NUM;i++)
 	{
@@ -54,13 +54,12 @@ void ScenePlay::InitPlay()
 	player->Init(stage_num);
 	enemy->Init(stage_num);
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
+	if (stage_num == STAGE_MAX_NUM)g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 }
 
 //プレイシーン通常処理
 void ScenePlay::StepPlay(){
 
-	if (stage_num>= STAGE_MAX_NUM)
-		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	// Enterを押したら
 	if (InputKey::Push(KEY_INPUT_RETURN))
 	{
