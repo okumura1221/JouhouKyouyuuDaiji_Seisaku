@@ -54,8 +54,6 @@ void ScenePlay::InitPlay()
 //プレイシーン通常処理
 void ScenePlay::StepPlay(){
 
-
-
 	if (stage_num>= STAGE_MAX_NUM)
 		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	// Enterを押したら
@@ -98,8 +96,9 @@ void ScenePlay::DrawPlay()
 
 	CMap->Draw(player->GetplayerOnSwitch(), enemy->GetEnemyOnSwitch());
 	if(player->GetplayerOnSwitch())
-	DrawFormatString(0, 300, GetColor(255, 0, 255),"adffds");
-
+	DrawFormatString(0, 300, GetColor(255, 0, 255),"プレイヤーのた");
+	if (enemy->GetEnemyOnSwitch())
+		DrawFormatString(0, 350, GetColor(255, 0, 255), "敵のた");
 	player->Draw();
 	enemy->Draw();
 	DrawGraph(10, 50, TextHan, true);
@@ -195,6 +194,7 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					if (player->GetplayerOnSwitch())
 					{
 						CMap->Set_Invert_Color(mapIndexY, mapIndexX);
+						CMap->Set_Invert_Color();
 					}
 					/*if (CMap->m_MapData[mapIndexY][mapIndexX] == 7)
 						if (player->GetplayerOnSwitch())
@@ -256,6 +256,7 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					if (enemy->GetEnemyOnSwitch())
 					{
 						CMap->Set_Invert_Color(mapIndexY, mapIndexX);
+						CMap->Set_Invert_Color();
 					}
 					/*if (CMap->m_MapData[mapIndexY][mapIndexX] == 7)
 						if (enemy->GetEnemyOnSwitch())
@@ -339,6 +340,7 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					if (player->GetplayerOnSwitch())
 					{
 						CMap->Set_Invert_Color(mapIndexY, mapIndexX);
+						CMap->Set_Invert_Color();
 					}			
 					/*if (CMap->m_MapData[mapIndexY][mapIndexX] == 7)
 						if (player->GetplayerOnSwitch())
@@ -398,6 +400,7 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					if (enemy->GetEnemyOnSwitch())
 					{
 						CMap->Set_Invert_Color(mapIndexY, mapIndexX);
+						CMap->Set_Invert_Color();
 					}			
 					/*if (CMap->m_MapData[mapIndexY][mapIndexX] == 7)
 						if (enemy->GetEnemyOnSwitch())

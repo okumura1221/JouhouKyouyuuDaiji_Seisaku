@@ -22,7 +22,7 @@ private:
 	//テキストハンドル
 	int TextHan = 0;
 
-	int stage_num = 0;
+	int stage_num = 0;//ステージ番号
 public:
 	ScenePlay();
 	~ScenePlay();
@@ -46,6 +46,6 @@ public:
 
 	};
 	int Getstage_num() { return stage_num; }
-
+	//ステージ番号をセットする
 	void  Setstage_num(int num);
 };

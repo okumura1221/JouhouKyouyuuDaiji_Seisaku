@@ -18,6 +18,7 @@ private:
 	int mapHandle[4];
 	int mapSelect[4];
 	bool Invert_Color_flag[MAP_DATA_Y][MAP_DATA_X] = { false };
+	bool Invert_Color_flag_full = false;
 public:
 	Map();
 	~Map();
@@ -33,5 +34,6 @@ public:
 	void Draw(bool playeron, bool enemyeron);
 
 	void Set_Invert_Color(int y, int x);
+	void Set_Invert_Color();
 };
 

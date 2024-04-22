@@ -102,7 +102,7 @@ public:
 
 	void SetplayerGoal(float x, float y);
 
-	VECTOR  GetplayerVector() const{ return m_pos; };
+	VECTOR  GetplayerVector() const{ return m_pos; };//プレイヤーの座標を全て取得する
 
-	VECTOR  GetMouseVector() const { return mouse_pos; };
+	VECTOR  GetMouseVector() const { return mouse_pos; };//マウスの座標を全て取得する
 };
