@@ -30,13 +30,6 @@ void SceneGameOver::StepGameOver()
 {
 	GetMousePoint(&mouseX, &mouseY);
 
-	//// Enterを押したら
-	//if (InputKey::Push(KEY_INPUT_RETURN))
-	//{
-	//	// ゲームオーバーシーンを終了
-	//	FinGameOver();
-	//}
-
 	if (mouseX >= 273 && mouseX <= 1022 && mouseY >= 588 && mouseY <= 675 &&
 		(GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
@@ -68,5 +61,5 @@ void SceneGameOver::FinGameOver()
 	DeleteGraph(GameOverBGHandle);
 
 	//タイトルシーンへ移動
-	g_CurrentSceneID = SCENE_ID_INIT_TITLE;
+	g_CurrentSceneID = SCENE_ID_INIT_PLAY;
 }
