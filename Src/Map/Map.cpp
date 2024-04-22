@@ -46,7 +46,7 @@ void Map::Init(int num) {
 }
 
 
-
+ 
 void Map::Draw(bool playeron, bool enemyeron) {
 
 	for (int y = 0; y < MAP_DATA_Y; y++)
