@@ -2,12 +2,32 @@
 
 // 画像パス
 // クリア背景
-#define CLEAR_BG_PATH "Data/Image/BackGround/TentativeClearBG.png"
+#define CLEAR_BG_PATH "Data/Image/Clear/ClearImage.png"
+
+#define CLEAR_BUTTTON_PATH1 "Data/Image/Clear/ClearButton1.png"
+#define CLEAR_BUTTTON_PATH2 "Data/Image/Clear/ClearButton2.png"
+
+#define CLEAR_EFFECT_PATH "Data/Image/Clear/ClearEffect.png"
+
+//タイトルBGM
+#define CLEAR_BGM_PATH "Data/Sound/GameClearBGM.M4A"
+#define CLEAR_BUTTON_SE_PATH "Data/Sound/ButtonSound.mp3"
 
 class SceneClear {
 private:
 	// クリア背景ハンドル
 	int ClearBGHandle;
+
+	int ClearButtonHandle1, ClearButtonHandle2;
+
+	int ClearEffectHandle;
+	int ClearEffectposX, ClearEffectposY;
+	
+
+	int mouseX, mouseY;
+
+	int ClearSoundPath;
+	int ButtonSEPath;
 
 public:
 	SceneClear();
