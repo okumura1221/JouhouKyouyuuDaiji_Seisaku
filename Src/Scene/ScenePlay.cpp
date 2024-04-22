@@ -11,6 +11,8 @@ Map* CMap;
 ScenePlay::MAPCollision mapcollision;
 Collision c;
 
+bool stage_change_flag;
+
 ScenePlay::ScenePlay()
 {
 	// プレイ背景ハンドル
@@ -23,7 +25,10 @@ ScenePlay::~ScenePlay() { FinPlay(); }
 //プレイシーンの初期化
 void ScenePlay::InitPlay()
 {
-	
+	if (stage_change_flag) {
+		Setstage_num(Getstage_num() + 1);
+		stage_change_flag = false;
+	}
 	// プレイ背景ハンドル
 	for (int i = 0;i < BACK_MAX_NUM;i++)
 	{
@@ -39,6 +44,7 @@ void ScenePlay::InitPlay()
 	enemy = new Enemy;
 	CMap = new Map;
 
+	stage_change_flag = false;
 	CMap->Init(stage_num);
 	player->Init();
 	enemy->Init();
@@ -47,6 +53,9 @@ void ScenePlay::InitPlay()
 
 //プレイシーン通常処理
 void ScenePlay::StepPlay(){
+
+
+
 	if (stage_num>= STAGE_MAX_NUM)
 		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	// Enterを押したら
@@ -108,6 +117,7 @@ void ScenePlay::FinPlay()
 	for (int i = 0;i < BACK_MAX_NUM;i++)
 		DeleteGraph(PlayBGHandle[i]);
 
+	Setstage_num(0);
 	// クリアシーンに移動
 	g_CurrentSceneID = SCENE_ID_INIT_CLEAR;
 }

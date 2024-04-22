@@ -105,7 +105,7 @@ void Player::Step() {
 		{
 			if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 			{
-				//ScenePlay::Setstage_num(ScenePlay::Getstage_num()+1);
+				stage_change_flag = true;
 				g_CurrentSceneID = SCENE_ID_INIT_PLAY;
 			}
 		}

@@ -1,5 +1,6 @@
 #pragma once
 
+
 // 画像パス
 // プレイ背景
 #define PLAY_BG_PATH "Data/Image/Play/back.png"
@@ -8,6 +9,8 @@
 #define TEXT_PATH	 "Data/Image/Play/text.png"
 
 #define STAGE_MAX_NUM 4
+
+
 
 class ScenePlay {
 private:
