@@ -6,14 +6,20 @@ SceneGameOver::SceneGameOver()
 {
 	// ゲームオーバー背景ハンドル
 	GameOverBGHandle = 0;
+	GameOverTextHandle = 0;
+	GameOverText2Handle = 0;
 }
 SceneGameOver::~SceneGameOver() { FinGameOver(); }
 
 //ゲームオーバーシーン初期化
 void SceneGameOver::InitGameOver()
 {
+	SetMouseDispFlag(true);
+
 	// ゲームオーバー背景ハンドル
 	GameOverBGHandle = LoadGraph(GAMEOVER_BG_PATH);
+	GameOverTextHandle = LoadGraph(GAMEOVER_TEXT_PATH);
+	GameOverText2Handle = LoadGraph(GAMEOVER_TEXT2_PATH);
 
 	//ゲームオーバーループへ
 	g_CurrentSceneID = SCENE_ID_LOOP_GAMEOVER;
@@ -22,9 +28,17 @@ void SceneGameOver::InitGameOver()
 //ゲームオーバーシーン通常処理
 void SceneGameOver::StepGameOver()
 {
+	GetMousePoint(&mouseX, &mouseY);
 
-	// Enterを押したら
-	if (InputKey::Push(KEY_INPUT_RETURN))
+	//// Enterを押したら
+	//if (InputKey::Push(KEY_INPUT_RETURN))
+	//{
+	//	// ゲームオーバーシーンを終了
+	//	FinGameOver();
+	//}
+
+	if (mouseX >= 273 && mouseX <= 1022 && mouseY >= 588 && mouseY <= 675 &&
+		(GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
 		// ゲームオーバーシーンを終了
 		FinGameOver();
@@ -36,6 +50,15 @@ void SceneGameOver::DrawGameOver()
 {
 	// ゲームオーバー背景描画
 	DrawGraph(0, 0, GameOverBGHandle, true);
+
+	if (mouseX >= 273 && mouseX <= 1022 && mouseY >= 588 && mouseY <= 675)
+	{
+		DrawGraph(0, 0, GameOverTextHandle, true);
+	}
+	else
+	{
+		DrawGraph(0, 0, GameOverText2Handle, true);
+	}
 }
 
 //ゲームオーバーシーン終了処理

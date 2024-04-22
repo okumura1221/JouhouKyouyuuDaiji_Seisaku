@@ -2,12 +2,18 @@
 
 // 画像パス
 // ゲームオーバー背景
-#define GAMEOVER_BG_PATH "Data/Image/BackGround/TentativeGameOverBG.png"
+#define GAMEOVER_BG_PATH "Data/Image/Gameover/over1.png"
+#define GAMEOVER_TEXT_PATH "Data/Image/Gameover/overtext1.png"
+#define GAMEOVER_TEXT2_PATH "Data/Image/Gameover/overtext2.png"
 
 class SceneGameOver {
 private:
 	// ゲームオーバー背景ハンドル
 	int GameOverBGHandle;
+	int GameOverTextHandle;
+	int GameOverText2Handle;
+
+	int mouseX, mouseY;
 
 public:
 	SceneGameOver();

@@ -97,7 +97,7 @@ void Player::Step() {
 		else speed = 0;
 		//スピードを出しすぎたらゲームオーバー
 		if (speed >= PLAYER_SPEED_MAX) {
-			g_CurrentSceneID = SCENE_ID_INIT_PLAY;
+			g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
 		}
 	}
 	else
