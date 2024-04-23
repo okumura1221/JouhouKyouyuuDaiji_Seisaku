@@ -162,7 +162,6 @@ void Enemy::Draw() {
 	}
 	SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);	
 	DrawGraph(m_pos.x, m_pos.y, EnemyHan[animIndex], true);
-
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
