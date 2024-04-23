@@ -25,6 +25,8 @@ ScenePlay::~ScenePlay() { FinPlay(); }
 //プレイシーンの初期化
 void ScenePlay::InitPlay()
 {
+	for(int i=0;i<3;i++)
+	StopSoundMem(BGM[i]);
 	if (stage_num < STAGE_MAX_NUM)
 	{
 

@@ -56,7 +56,6 @@ void SceneTitle::StepTitle()
 		(GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
 		PlaySoundMem(ButtonSEPath, DX_PLAYTYPE_BACK,true);
-
 		SceneFlag = true;
 	}
 	if (NextSceneCnt == 0)
