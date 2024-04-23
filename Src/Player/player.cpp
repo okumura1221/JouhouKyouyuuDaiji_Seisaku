@@ -3,6 +3,7 @@
 #include <math.h>
 #include <cmath>
 #include"../Scene/ScenePlay.h"
+#include"../Scene/SceneGameOver.h"
 //スクリーンサイズ設定
 #define WINDOW_WIDTH			(1280)
 #define WINDOW_HEIGHT			(720)						
@@ -21,6 +22,7 @@
 #define PLAYER_SPEED_MAX 6
 
 bool S_Stop_BGM;
+int GameOverNumber;
 
 Player::Player()
 {

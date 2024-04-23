@@ -2,12 +2,14 @@
 #include "Scene.h"
 #include "SceneGameOver.h"
 
+
 SceneGameOver::SceneGameOver()
 {
 	mouseX = 0;
 	mouseY = 0;
 	// ゲームオーバー背景ハンドル
-	GameOverBGHandle = 0;
+	for (int i = 0; i < 3; i++)
+	GameOverBGHandle[i] = 0;
 	GameOverTextHandle = 0;
 	GameOverText2Handle = 0;
 }
@@ -19,7 +21,9 @@ void SceneGameOver::InitGameOver()
 	SetMouseDispFlag(true);
 
 	// ゲームオーバー背景ハンドル
-	GameOverBGHandle = LoadGraph(GAMEOVER_BG_PATH);
+	GameOverBGHandle[0] = LoadGraph(GAMEOVER_BG_PATH_1);
+	GameOverBGHandle[1] = LoadGraph(GAMEOVER_BG_PATH_2);
+	GameOverBGHandle[2] = LoadGraph(GAMEOVER_BG_PATH_3);
 	GameOverTextHandle = LoadGraph(GAMEOVER_TEXT_PATH);
 	GameOverText2Handle = LoadGraph(GAMEOVER_TEXT2_PATH);
 
@@ -46,7 +50,7 @@ void SceneGameOver::StepGameOver()
 void SceneGameOver::DrawGameOver()
 {
 	// ゲームオーバー背景描画
-	DrawGraph(0, 0, GameOverBGHandle, true);
+	DrawGraph(0, 0, GameOverBGHandle[GameOverNumber], true);
 
 	if (mouseX >= 273 && mouseX <= 1022 && mouseY >= 588 && mouseY <= 675)
 	{
@@ -62,7 +66,8 @@ void SceneGameOver::DrawGameOver()
 void SceneGameOver::FinGameOver()
 {
 	// ゲームオーバー背景ハンドル
-	DeleteGraph(GameOverBGHandle);
+	for(int i=0;i<3;i++)
+	DeleteGraph(GameOverBGHandle[i]);
 	DeleteSoundMem(BGM);
 	//タイトルシーンへ移動
 	g_CurrentSceneID = SCENE_ID_INIT_PLAY;
