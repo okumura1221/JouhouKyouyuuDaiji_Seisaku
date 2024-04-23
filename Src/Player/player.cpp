@@ -20,6 +20,8 @@
 //プレイヤーが出していい最高スピード
 #define PLAYER_SPEED_MAX 6
 
+bool S_Stop_BGM;
+
 Player::Player()
 {
 	m_move_vec = { 0 };
@@ -70,6 +72,8 @@ void Player::Init(int num) {
 	Walk_Sound[10] = LoadSoundMem("Data/Sound/ashi/10.mp3");
 	Walk_Sound[11] = LoadSoundMem("Data/Sound/ashi/11.mp3");
 	Walk_Sound[12] = LoadSoundMem("Data/Sound/ashi/12.mp3");
+
+	S_Stop_BGM = false;
 }
 
 void Player::Step() {
@@ -120,6 +124,7 @@ void Player::Step() {
 		else speed = 0;
 		//スピードを出しすぎたらゲームオーバー
 		if (speed >= PLAYER_SPEED_MAX) {
+			S_Stop_BGM = true;
 			g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
 		}
 	}
@@ -195,17 +200,7 @@ void Player::Draw() {
 		SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
 	DrawRotaGraph(mouse_pos.x, mouse_pos.y, 1.0, 0.0, mouseHan, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	DrawFormatString(0, 0, GetColor(255, 0, 0), 
-		"プレイヤー座標:X:%f\nプレイヤー座標:Y:%f\nプレイヤー座標:Z:%f"
-		, m_pos.x, m_pos.y, m_pos.z);
-	DrawFormatString(0, 55, GetColor(0, 0, 255),
-		"マウス座標:X:%f\nマウス座標:Y:%f\nマウス座標:Z:%f"
-		, mouse_pos.x, mouse_pos.y, mouse_pos.z);
-	DrawFormatString(0, 110, GetColor(255, 0, 255),
-		"加速度:%f", speed);
-
-	DrawFormatString(0, 250, GetColor(255, 0, 255),
-		"%f", GetPlayerPosX());
+	
 }
 
 // 進んでいる方向をチェック

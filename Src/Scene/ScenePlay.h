@@ -11,6 +11,7 @@
 #define STAGE_MAX_NUM 4
 
 
+extern bool S_Stop_BGM;
 
 class ScenePlay {
 private:

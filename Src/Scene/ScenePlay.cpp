@@ -29,7 +29,6 @@ void ScenePlay::InitPlay()
 	StopSoundMem(BGM[i]);
 	if (stage_num < STAGE_MAX_NUM)
 	{
-
 		if (stage_change_flag) {
 			Setstage_num(Getstage_num() + 1);
 			stage_change_flag = false;
@@ -46,6 +45,8 @@ void ScenePlay::InitPlay()
 
 	backX[0] = 0;
 	backX[1] = 1280;
+
+	S_Stop_BGM = false;
 
 	player = new Player;
 	enemy = new Enemy;
@@ -86,9 +87,14 @@ void ScenePlay::StepPlay(){
 		(int)player->GetNextPlayerPosY(),
 		(int)enemy->GetEnemyPosY()))
 	{
-		g_CurrentSceneID = SCENE_ID_INIT_PLAY;
+		g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
 	}
 
+	if (S_Stop_BGM)
+	{
+		for (int i = 0; i < 3; i++)
+			StopSoundMem(BGM[i]);
+	}
 	//”wŒiƒXƒNƒ[ƒ‹ˆ—
 	for (int i = 0;i < BACK_MAX_NUM;i++)
 	{
@@ -106,10 +112,6 @@ void ScenePlay::DrawPlay()
 	}
 
 	CMap->Draw(player->GetplayerOnSwitch(), enemy->GetEnemyOnSwitch());
-	if(player->GetplayerOnSwitch())
-	DrawFormatString(0, 300, GetColor(255, 0, 255),"ƒvƒŒƒCƒ„[‚Ì‚½");
-	if (enemy->GetEnemyOnSwitch())
-		DrawFormatString(0, 350, GetColor(255, 0, 255), "“G‚Ì‚½");
 	player->Draw();
 	enemy->Draw();
 	DrawGraph(10, 50, TextHan, true);
@@ -194,7 +196,7 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					}
 					//…‚ÉG‚ê‚é‚Æ‰æ–Ê‘JˆÚ
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
-						g_CurrentSceneID = SCENE_ID_INIT_PLAY;
+						g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
 
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 5)
 					{
@@ -339,7 +341,7 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					}
 					//…‚ÉG‚ê‚é‚Æ‰æ–Ê‘JˆÚ
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
-						g_CurrentSceneID = SCENE_ID_INIT_PLAY;
+						g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
 
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 5)
 					{
