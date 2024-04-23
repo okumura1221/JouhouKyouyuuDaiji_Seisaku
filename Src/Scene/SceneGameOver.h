@@ -16,6 +16,8 @@ private:
 	int mouseX, mouseY;
 
 public:
+	int BGM = 0;
+
 	SceneGameOver();
 	~SceneGameOver();
 

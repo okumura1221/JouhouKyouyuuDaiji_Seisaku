@@ -49,12 +49,17 @@ void ScenePlay::InitPlay()
 	enemy = new Enemy;
 	CMap = new Map;
 
+	BGM[0] = LoadSoundMem("Data/Sound/BGM/1.wav");
+	BGM[1] = LoadSoundMem("Data/Sound/BGM/2.wav");
+	BGM[2] = LoadSoundMem("Data/Sound/BGM/3.wav");
+
 	stage_change_flag = false;
 	CMap->Init(stage_num);
 	player->Init(stage_num);
 	enemy->Init(stage_num);
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
 	if (stage_num == STAGE_MAX_NUM)g_CurrentSceneID = SCENE_ID_FIN_PLAY;
+	PlaySoundMem(BGM[GetRand(2)], DX_PLAYTYPE_LOOP, true);
 }
 
 //プレイシーン通常処理
@@ -120,6 +125,8 @@ void ScenePlay::FinPlay()
 	enemy = nullptr;
 	for (int i = 0;i < BACK_MAX_NUM;i++)
 		DeleteGraph(PlayBGHandle[i]);
+	for (int i = 0; i < 3; i++)
+	DeleteSoundMem(BGM[i]);
 
 	Setstage_num(0);
 	// クリアシーンに移動

@@ -5,6 +5,8 @@ constexpr float DISTANCE = 200;
 
 extern bool stage_change_flag;
 
+#define WALK_SOUND_MAX_NUM 13
+
 enum Animation {
 	R,//右
 	L //左
@@ -14,7 +16,7 @@ class Player {
 
 protected:
 	//プレイヤー変数
-	int playerHan[11] = { 0 };				//プレイヤー画像
+	int playerHan[13] = { 0 };				//プレイヤー画像
 	const int Player_Animation = 11;		//プレイヤーのアニメーション数
 	const int playerSize = 64;				//プレイヤー画像サイズ
 
@@ -42,6 +44,8 @@ protected:
 	VECTOR mouse_pos = { 0 };
 
 public:
+	int Walk_Sound[13] = { 0 };
+
 	Player();
 	~Player();
 

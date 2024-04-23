@@ -56,6 +56,20 @@ void Player::Init(int num) {
 	mauseGetFlag = false;
 	mauseOnPicture = false;
 	animIndex = 1;
+
+	Walk_Sound[0] = LoadSoundMem("Data/Sound/ashi/0.mp3");
+	Walk_Sound[1] = LoadSoundMem("Data/Sound/ashi/1.mp3");
+	Walk_Sound[2] = LoadSoundMem("Data/Sound/ashi/2.mp3");
+	Walk_Sound[3] = LoadSoundMem("Data/Sound/ashi/3.mp3");
+	Walk_Sound[4] = LoadSoundMem("Data/Sound/ashi/4.mp3");
+	Walk_Sound[5] = LoadSoundMem("Data/Sound/ashi/5.mp3");
+	Walk_Sound[6] = LoadSoundMem("Data/Sound/ashi/6.mp3");
+	Walk_Sound[7] = LoadSoundMem("Data/Sound/ashi/7.mp3");
+	Walk_Sound[8] = LoadSoundMem("Data/Sound/ashi/8.mp3");
+	Walk_Sound[9] = LoadSoundMem("Data/Sound/ashi/9.mp3");
+	Walk_Sound[10] = LoadSoundMem("Data/Sound/ashi/10.mp3");
+	Walk_Sound[11] = LoadSoundMem("Data/Sound/ashi/11.mp3");
+	Walk_Sound[12] = LoadSoundMem("Data/Sound/ashi/12.mp3");
 }
 
 void Player::Step() {
@@ -154,6 +168,10 @@ void Player::Draw() {
 			else if (animIndex <= 4) {
 				animIndex = 7;
 			}
+			if (animIndex == 4 || animIndex == 6)
+				PlaySoundMem(Walk_Sound
+					[GetRand(WALK_SOUND_MAX_NUM - 1)]
+					, DX_PLAYTYPE_BACK, true);
 		}
 	}
 	else

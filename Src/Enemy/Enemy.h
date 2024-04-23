@@ -37,6 +37,8 @@ protected:
 
 	bool MouseOrPlayer = false;//マウスに反応時false、プレイヤーに反応時true;
 public:
+	int Walk_Sound[13] = { 0 };
+
 	Enemy();
 	~Enemy();
 

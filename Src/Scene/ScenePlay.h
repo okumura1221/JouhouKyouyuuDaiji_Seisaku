@@ -23,7 +23,11 @@ private:
 	int TextHan = 0;
 
 	int stage_num = 0;//ステージ番号
+
+	
 public:
+	int BGM[3] = { 0 };
+
 	ScenePlay();
 	~ScenePlay();
 

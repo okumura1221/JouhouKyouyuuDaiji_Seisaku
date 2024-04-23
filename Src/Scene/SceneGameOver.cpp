@@ -4,6 +4,8 @@
 
 SceneGameOver::SceneGameOver()
 {
+	mouseX = 0;
+	mouseY = 0;
 	// ゲームオーバー背景ハンドル
 	GameOverBGHandle = 0;
 	GameOverTextHandle = 0;
@@ -21,6 +23,8 @@ void SceneGameOver::InitGameOver()
 	GameOverTextHandle = LoadGraph(GAMEOVER_TEXT_PATH);
 	GameOverText2Handle = LoadGraph(GAMEOVER_TEXT2_PATH);
 
+	BGM = LoadSoundMem("Data/Sound/BGM/over.wav");
+	PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, true);
 	//ゲームオーバーループへ
 	g_CurrentSceneID = SCENE_ID_LOOP_GAMEOVER;
 }
@@ -59,7 +63,7 @@ void SceneGameOver::FinGameOver()
 {
 	// ゲームオーバー背景ハンドル
 	DeleteGraph(GameOverBGHandle);
-
+	DeleteSoundMem(BGM);
 	//タイトルシーンへ移動
 	g_CurrentSceneID = SCENE_ID_INIT_PLAY;
 }

@@ -20,8 +20,8 @@ private:
 
 	int ClearButtonHandle1, ClearButtonHandle2;
 
-	int ClearEffectHandle;
-	int ClearEffectposX, ClearEffectposY;
+	int ClearEffectHandle[2];
+	int ClearEffectposX, ClearEffectposY[2];
 	
 
 	int mouseX, mouseY;

@@ -9,8 +9,8 @@ SceneClear::SceneClear()
 
 	ClearButtonHandle1 = 0;
 	ClearButtonHandle2 = 0;
-
-	ClearEffectHandle = 0;
+	for (int i = 0; i < 2; i++)
+	ClearEffectHandle[i] = 0;
 }
 SceneClear::~SceneClear() { FinClear(); }
 
@@ -20,16 +20,18 @@ void SceneClear::InitClear()
 	SetMouseDispFlag(true);
 
 	// クリア背景ハンドル
+	
 	ClearBGHandle = LoadGraph(CLEAR_BG_PATH);
 
 	//タイトルボタンハンドル
 	ClearButtonHandle1 = LoadGraph(CLEAR_BUTTTON_PATH1);
 	ClearButtonHandle2 = LoadGraph(CLEAR_BUTTTON_PATH2);
-
-	ClearEffectHandle = LoadGraph(CLEAR_EFFECT_PATH);
+	for (int i = 0; i < 2; i++)
+	{
+		ClearEffectHandle[i] = LoadGraph(CLEAR_EFFECT_PATH);
+		ClearEffectposY[i] = -720*(i+1);
+	}
 	ClearEffectposX = 0;
-	ClearEffectposY = -720;
-
 	//サウンドハンドル
 	ClearSoundPath = LoadSoundMem(CLEAR_BGM_PATH);
 	ButtonSEPath = LoadSoundMem(CLEAR_BUTTON_SE_PATH);
@@ -50,13 +52,14 @@ void SceneClear::StepClear()
 	//	// クリアシーンを終了
 	//	FinClear();
 	//}
-
-	ClearEffectposY += 5;
-	if (ClearEffectposY >= 720)
+	for (int i = 0; i < 2; i++)
 	{
-		ClearEffectposY = -720;
+		ClearEffectposY[i] += 5;
+		if (ClearEffectposY[i] >= 720)
+		{
+			ClearEffectposY[i] = -720;
+		}
 	}
-
 	//タイトルボタンを押したら
 	if (mouseX >= 273 && mouseX <= 1022 && mouseY >= 588 && mouseY <= 675 &&
 		(GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
@@ -76,20 +79,19 @@ void SceneClear::DrawClear()
 	// クリア背景描画
 	DrawGraph(0, 0, ClearBGHandle, true);
 
+	for (int i = 0; i < 2; i++)
+		DrawGraph(ClearEffectposX, ClearEffectposY[i], ClearEffectHandle[i], true);
+	
 	//タイトルボタン描画
 	if (mouseX >= 273 && mouseX <= 1022 && mouseY >= 588 && mouseY <= 675)
 	{
-		DrawGraph(0, 0,ClearButtonHandle2, true);
+		DrawGraph(0, 0, ClearButtonHandle2, true);
 	}
 	else
 	{
-		
 		DrawGraph(-4, -4, ClearButtonHandle1, true);
-		
 	}
-
-	DrawGraph(ClearEffectposX, ClearEffectposY, ClearEffectHandle, true);
-
+	
 	//DrawRotaGraph(ClearEffectposX,ClearEffectposY,1.0f,0.0f,ClearEffectHandle,true);
 }
 
@@ -106,8 +108,8 @@ void SceneClear::FinClear()
 	//BGMハンドル
 	DeleteSoundMem(ClearSoundPath);
 	DeleteSoundMem(ButtonSEPath);
-
-	DeleteGraph(ClearEffectHandle);
+	for (int i = 0; i < 2; i++)
+	DeleteGraph(ClearEffectHandle[i]);
 
 	//タイトルシーンへ移動
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;
