@@ -18,7 +18,7 @@ SceneClear::~SceneClear() { FinClear(); }
 void SceneClear::InitClear()
 {
 	SetMouseDispFlag(true);
-
+	clickflag = false;
 	// クリア背景ハンドル
 	
 	ClearBGHandle = LoadGraph(CLEAR_BG_PATH);
@@ -64,8 +64,10 @@ void SceneClear::StepClear()
 	if (mouseX >= 273 && mouseX <= 1022 && mouseY >= 588 && mouseY <= 675 &&
 		(GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
-		PlaySoundMem(ButtonSEPath, DX_PLAYTYPE_BACK, true);
-
+		if (!clickflag) {
+			PlaySoundMem(ButtonSEPath, DX_PLAYTYPE_BACK, true);
+			clickflag = true;
+		}
 		// クリアシーンを終了
 		FinClear();
 		

@@ -10,8 +10,8 @@
 #define CLEAR_EFFECT_PATH "Data/Image/Clear/ClearEffect.png"
 
 //ƒ^ƒCƒgƒ‹BGM
-#define CLEAR_BGM_PATH "Data/Sound/GameClearBGM.M4A"
-#define CLEAR_BUTTON_SE_PATH "Data/Sound/ButtonSound.mp3"
+#define CLEAR_BGM_PATH "Data/Sound/ed.wav"
+#define CLEAR_BUTTON_SE_PATH "Data/Sound/click.mp3"
 
 class SceneClear {
 private:
@@ -30,6 +30,7 @@ private:
 	int ButtonSEPath;
 
 public:
+	bool clickflag;
 	SceneClear();
 	~SceneClear();
 

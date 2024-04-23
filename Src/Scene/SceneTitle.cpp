@@ -35,6 +35,8 @@ void SceneTitle::InitTitle()
 	NextSceneCnt = 255;
 	SceneFlag = false;
 
+	clickflag = false;
+
 	// タイトルループへ
 	g_CurrentSceneID = SCENE_ID_LOOP_TITLE;
 }
@@ -55,7 +57,10 @@ void SceneTitle::StepTitle()
 	if (mouseX>=273&&mouseX<=1022&&mouseY >= 588&&mouseY<=675&&
 		(GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
-		PlaySoundMem(ButtonSEPath, DX_PLAYTYPE_BACK,true);
+		if (!clickflag) {
+			PlaySoundMem(ButtonSEPath, DX_PLAYTYPE_BACK, true);
+			clickflag = true;
+		}
 		SceneFlag = true;
 	}
 	if (NextSceneCnt == 0)
@@ -105,7 +110,7 @@ void SceneTitle::DrawTitle()
 			DrawGraph(-4, -4, TitleButtonHandle1, true);
 		}
 	}
-	
+	DrawFormatString(1155, 680, GetColor(255, 255, 255), "BGM:OtoLogic様");
 	//座標確認用
    /* DrawFormatString(0, 55, GetColor(0, 0, 255),
 		"マウス座標:X:%d\nマウス座標:Y:%d"
@@ -128,4 +133,9 @@ void SceneTitle::FinTitle()
 	
 	// プレイシーンに移動
 	g_CurrentSceneID = SCENE_ID_INIT_PLAY;
+}
+
+void  SceneTitle::Setclickflag() {
+	if (clickflag)clickflag = false;
+	else clickflag = true;
 }

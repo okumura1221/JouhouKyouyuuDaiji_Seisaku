@@ -8,8 +8,8 @@
 #define TITLE_BUTTTON_PATH2 "Data/Image/Title/SelectButton2.png"
 
 //タイトルBGM
-#define TITLE_BGM_PATH "Data/Sound/TitleSceneBGM.mp3"
-#define BUTTON_SE_PATH "Data/Sound/ButtonSound.mp3"
+#define TITLE_BGM_PATH "Data/Sound/title.wav"
+#define BUTTON_SE_PATH "Data/Sound/click.mp3"
 
 class SceneTitle {
 private:
@@ -26,7 +26,11 @@ private:
 
 	bool SceneFlag;
 
+	
 public:
+
+	bool clickflag;
+
 	SceneTitle();
 	~SceneTitle();
 	
@@ -41,4 +45,8 @@ public:
 
 	// タイトル終了処理
 	void FinTitle();
+
+	void Setclickflag();
+
+	bool Getclickflag(){ return clickflag; };
 };

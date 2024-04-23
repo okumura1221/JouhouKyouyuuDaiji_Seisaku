@@ -22,7 +22,7 @@
 #define PLAYER_SPEED_MAX 6
 
 bool S_Stop_BGM;
-int GameOverNumber;
+int GameOverNumbe=0;
 
 Player::Player()
 {
@@ -127,6 +127,7 @@ void Player::Step() {
 		//スピードを出しすぎたらゲームオーバー
 		if (speed >= PLAYER_SPEED_MAX) {
 			S_Stop_BGM = true;
+			GameOverNumber = 0;
 			g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
 		}
 	}
@@ -202,7 +203,6 @@ void Player::Draw() {
 		SetDrawBlendMode(DX_BLENDMODE_INVSRC, 255);
 	DrawRotaGraph(mouse_pos.x, mouse_pos.y, 1.0, 0.0, mouseHan, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	
 }
 
 // 進んでいる方向をチェック

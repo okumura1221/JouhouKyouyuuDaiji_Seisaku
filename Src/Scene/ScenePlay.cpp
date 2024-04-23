@@ -5,6 +5,7 @@
 #include "../Collision/Collision.h"
 #include"../Player/player.h"
 #include"../Enemy/Enemy.h"
+#include"../Scene/SceneGameOver.h"
 Player* player;
 Enemy* enemy;
 Map* CMap;
@@ -12,6 +13,7 @@ ScenePlay::MAPCollision mapcollision;
 Collision c;
 
 bool stage_change_flag;
+int GameOverNumber;
 
 ScenePlay::ScenePlay()
 {
@@ -25,6 +27,7 @@ ScenePlay::~ScenePlay() { FinPlay(); }
 //ƒvƒŒƒCƒV[ƒ“‚Ì‰Šú‰»
 void ScenePlay::InitPlay()
 {
+	GameOverNumber = 0;
 	for(int i=0;i<3;i++)
 	StopSoundMem(BGM[i]);
 	if (stage_num < STAGE_MAX_NUM)
@@ -87,6 +90,8 @@ void ScenePlay::StepPlay(){
 		(int)player->GetNextPlayerPosY(),
 		(int)enemy->GetEnemyPosY()))
 	{
+		GameOverNumber = 2;
+		S_Stop_BGM = true;
 		g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
 	}
 
@@ -196,8 +201,11 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					}
 					//…‚ÉG‚ê‚é‚Æ‰æ–Ê‘JˆÚ
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
+					{
+						S_Stop_BGM = true;
+						GameOverNumber = 1;
 						g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
-
+					}
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 5)
 					{
 						player->SetplayerGoalFlag();
@@ -341,8 +349,11 @@ void ScenePlay::MAPCollision::MapCollision(int num) {
 					}
 					//…‚ÉG‚ê‚é‚Æ‰æ–Ê‘JˆÚ
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 4)
+					{
+						S_Stop_BGM = true;
+						GameOverNumber = 1;
 						g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
-
+					}
 					if (CMap->m_MapData[mapIndexY][mapIndexX] == 5)
 					{
 						player->SetplayerGoalFlag();
